@@ -1,6 +1,6 @@
 package it.develhope.shoppyz.product;
 
-public class Product {
+public class Product extends ProductGroup{
     private String id;
     private String type;
     private double price;
