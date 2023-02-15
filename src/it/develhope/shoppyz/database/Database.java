@@ -5,6 +5,7 @@ import it.develhope.shoppyz.user.User;
 
 public class Database {
 
+    // new
     private User user = new User();
     private Product product = new Product();
     private Database database = new Database(user, product);
