@@ -54,4 +54,15 @@ public class Product extends ProductGroup{
     public void setStockedAmount(String stockedAmount) {
         this.stockedAmount = stockedAmount;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", stockedAmount='" + stockedAmount + '\'' +
+                '}';
+    }
 }
