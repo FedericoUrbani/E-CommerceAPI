@@ -12,14 +12,13 @@ public class ShoppingCart {
     private int currentQuantity;
 
     List<Product> productList = new ArrayList<>();
+    List<Integer> quantities = new ArrayList<>();
 
 
     public ShoppingCart(Product product, double totalPrice, PaymentMethod paymentMethod) {
         this.product = product;
         this.totalPrice = totalPrice;
         this.paymentMethod = paymentMethod;
-
-
     }
 
     public Product getProduct() {
@@ -46,16 +45,28 @@ public class ShoppingCart {
         this.paymentMethod = paymentMethod;
     }
 
-    /**
-     * Adds a product to the cart with the specified quantity.
-     * if the product is already in the shopping cart, the quantity is updated.
-     *
-     * @param product the product to add to the cart
-     * @param quantity the quantity of the product to add
-     */
     public void addProduct(Product product, int quantity) {
-        for(int i = 0; i < quantity; i++){
-            this.productList.add(product);
+        if(!productList.contains(product)){
+            productList.add(product);
+            quantities.add(quantity);
+        }else{
+            int index = productList.indexOf(product);
+            quantities.set(index, quantities.get(index) + quantity);
         }
+    }
+
+    public void printItems(){
+        System.out.println("Products in the cart: ");
+        for(int i = 0; i < productList.size(); i++){
+            System.out.println(productList.get(i).getId() + " - " + productList.get(i).getPrice() + " x " + quantities.get(i));
+        }
+    }
+
+    public double totalPrice(){
+        double totalPrice = 0;
+        for(int i = 0; i < productList.size(); i++){
+            totalPrice+=productList.get(i).getPrice() * quantities.get(i);
+        }
+        return totalPrice;
     }
 }
