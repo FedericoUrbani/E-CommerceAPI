@@ -5,8 +5,8 @@ bisogna creare queste classi per completare sellsAccount
  */
 public class SellsAccount{// extends Account{
     // private Product [] productsStock;
-    private Insights insights = new Insights();
-    private Agency agency = new Agency();
+    private Insights insights;
+    private Agency agency;
     // private Bank bankDetails;
 
     public Agency getAgency(){
