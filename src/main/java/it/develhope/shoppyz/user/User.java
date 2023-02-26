@@ -7,19 +7,28 @@ public class User {
     private int id;
     private String name;
     private String surname;
-    private String city;
     private Address address;
     private String phoneNumber;
-    private Account account;
 
-    public User(int id, String name, String surname, String city, Address address, String phoneNumber, Account account) {
+    private String email;
+
+
+
+   // public User() {
+    //}
+
+    public User(int id, String name, String surname, Address address, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.city = city;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.account = account;
+        this.email=email;
+
+    }
+
+    public User() {
+
     }
 
     public int getId() {
@@ -46,13 +55,6 @@ public class User {
         this.surname = surname;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     public Address getAddress() {
         return address;
@@ -70,24 +72,25 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Account getAccount() {
-        return account;
+
+
+
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", city='" + city + '\'' +
                 ", address=" + address +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", account=" + account +
                 '}';
     }
 }
