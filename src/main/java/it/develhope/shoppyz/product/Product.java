@@ -1,6 +1,8 @@
 package it.develhope.shoppyz.product;
 
-public class Product extends ProductGroup{
+import java.util.ArrayList;
+
+public class Product {
     private String id;
     private String type;
     private double price;
@@ -55,6 +57,21 @@ public class Product extends ProductGroup{
         this.stockedAmount = stockedAmount;
     }
 
+   //Array list productGroups
+    private ArrayList<Product> productGroups;
+
+    public void ProductGroup() {
+        productGroups = new ArrayList<Product>();
+    }
+
+    public void addProductGroup(Product productGroup) {
+            productGroups.add(productGroup);
+        }
+    public ArrayList<Product> getProductGroups() {
+        return productGroups;
+    }
+
+
     @Override
     public String toString() {
         return "Product{" +
@@ -64,5 +81,8 @@ public class Product extends ProductGroup{
                 ", image='" + image + '\'' +
                 ", stockedAmount='" + stockedAmount + '\'' +
                 '}';
+
+
     }
 }
+
