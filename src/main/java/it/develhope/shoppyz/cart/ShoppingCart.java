@@ -11,6 +11,7 @@ public class ShoppingCart {
     private PaymentMethod paymentMethod;
     private int currentQuantity;
 
+
     List<Product> productList = new ArrayList<>();
     List<Integer> quantities = new ArrayList<>();
 
@@ -46,27 +47,29 @@ public class ShoppingCart {
     }
 
     public void addProduct(Product product, int quantity) {
-        if(!productList.contains(product)){
+        if (!productList.contains(product)) {
             productList.add(product);
             quantities.add(quantity);
-        }else{
+        } else {
             int index = productList.indexOf(product);
             quantities.set(index, quantities.get(index) + quantity);
         }
     }
 
-    public void printItems(){
+    public void printItems() {
         System.out.println("Products in the cart: ");
-        for(int i = 0; i < productList.size(); i++){
+        for (int i = 0; i < productList.size(); i++) {
             System.out.println(productList.get(i).getId() + " - " + productList.get(i).getPrice() + " x " + quantities.get(i));
         }
     }
 
-    public double totalPrice(){
+    public double totalPrice() {
         double totalPrice = 0;
-        for(int i = 0; i < productList.size(); i++){
-            totalPrice+=productList.get(i).getPrice() * quantities.get(i);
+        for (int i = 0; i < productList.size(); i++) {
+            totalPrice += productList.get(i).getPrice() * quantities.get(i);
         }
         return totalPrice;
     }
+
+
 }
