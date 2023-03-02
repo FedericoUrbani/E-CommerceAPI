@@ -71,5 +71,21 @@ public class ShoppingCart {
         return totalPrice;
     }
 
+    public void removedProduct(Product product, int quantity){
+        int index = productList.indexOf(product);
+        if(index != -1){
+            int currentQuantity = quantities.get(index);
+            if(currentQuantity > quantity){
+                quantities.set(index, currentQuantity - quantity);
+            } else {
+                productList.remove(index);
+                quantities.remove(index);
+            }
+            System.out.println(quantity + " " + product.getId() + " removed from cart.");
+        }else {
+            System.out.println(product.getId() + " not found in cart");
+        }
+    }
+
 
 }
