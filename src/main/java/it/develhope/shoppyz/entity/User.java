@@ -1,7 +1,6 @@
-package it.develhope.shoppyz.user;
+package it.develhope.shoppyz.entity;
 
-import it.develhope.shoppyz.account.Account;
-import it.develhope.shoppyz.address.Address;
+import it.develhope.shoppyz.entity.Address;
 
 public class User {
     private int id;

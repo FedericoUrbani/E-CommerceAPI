@@ -1,7 +1,7 @@
-package it.develhope.shoppyz.cart;
+package it.develhope.shoppyz.entity;
 
 import it.develhope.shoppyz.payment.PaymentMethod;
-import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.entity.Product;
 import java.util.ArrayList;
 import java.util.List;
 

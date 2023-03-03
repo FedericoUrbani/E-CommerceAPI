@@ -1,6 +1,6 @@
-package it.develhope.shoppyz.account;
+package it.develhope.shoppyz.entity;
 
-import it.develhope.shoppyz.address.Address;
+import it.develhope.shoppyz.entity.Address;
 
 public class Agency {
     private Address address;

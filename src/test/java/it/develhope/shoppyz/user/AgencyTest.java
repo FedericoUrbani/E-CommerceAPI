@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.user;
 
-import it.develhope.shoppyz.account.Agency;
-import it.develhope.shoppyz.address.Address;
+import it.develhope.shoppyz.entity.Agency;
+import it.develhope.shoppyz.entity.Address;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,4 @@
-package it.develhope.shoppyz.account;
-
-import it.develhope.shoppyz.account.SellsAccount;
+package it.develhope.shoppyz.entity;
 
 public class Insights {
     private SellsAccount sellsAccount = new SellsAccount();
