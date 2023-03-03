@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.product;
+package it.develhope.shoppyz.entity;
 
 import java.util.ArrayList;
 

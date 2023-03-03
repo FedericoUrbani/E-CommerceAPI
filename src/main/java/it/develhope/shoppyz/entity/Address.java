@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.address;
+package it.develhope.shoppyz.entity;
 
 public class Address {
     private String street;

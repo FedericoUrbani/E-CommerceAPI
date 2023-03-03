@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.user;
 
 
-import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.entity.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

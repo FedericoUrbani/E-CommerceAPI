@@ -1,22 +1,20 @@
-package it.develhope.shoppyz.account;
-
-import it.develhope.shoppyz.user.User;
+package it.develhope.shoppyz.entity;
 
 public class Account  {
+    private int id;
     private String accountName;
     private String accountPass;
     private boolean sellsAccountActivation;
     private SellsAccount sellsAccount;
     private boolean enabledAccount = true;
-
     private boolean doubleAuthentication=false;
     private String authenticatedPhoneNumber;
-
     private User user;
     private String recoveryMail;
 
-    public Account(User user, String accountName, String accountPass) {
+    public Account(int id,User user, String accountName, String accountPass) {
 
+        this.id=id;
         this.user=user;
         this.accountName = accountName;
         this.accountPass = accountPass;
@@ -50,6 +48,9 @@ public class Account  {
 
     public void setSellsAccountActivation(boolean sellsAccountActivation) {
         this.sellsAccountActivation = sellsAccountActivation;
+    }
+    public boolean getSellsAccountActivation() {
+        return this.sellsAccountActivation;
     }
 
     public SellsAccount getSellsAccount() {
@@ -100,6 +101,13 @@ public class Account  {
         this.recoveryMail = recoveryMail;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     @Override
     public String toString() {
         return "Account{" +

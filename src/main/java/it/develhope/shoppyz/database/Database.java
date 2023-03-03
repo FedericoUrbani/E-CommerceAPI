@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.database;
 
-import it.develhope.shoppyz.product.Product;
-import it.develhope.shoppyz.user.User;
+import it.develhope.shoppyz.entity.Product;
+import it.develhope.shoppyz.entity.User;
 
 public class Database {
 

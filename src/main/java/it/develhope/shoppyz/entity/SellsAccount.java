@@ -1,4 +1,7 @@
-package it.develhope.shoppyz.account;
+package it.develhope.shoppyz.entity;
+
+import it.develhope.shoppyz.entity.Agency;
+import it.develhope.shoppyz.entity.Insights;
 
 /*
 bisogna creare queste classi per completare sellsAccount
