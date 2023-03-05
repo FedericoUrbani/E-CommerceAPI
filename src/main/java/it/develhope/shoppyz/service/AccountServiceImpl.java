@@ -24,8 +24,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
-    public void updateAccount(int id) {
-        accountRepository.updateAccount(id);
+    public void updateAccount(int id, Account account) {
+        accountRepository.updateAccount(id,account);
     }
 
     @Override
