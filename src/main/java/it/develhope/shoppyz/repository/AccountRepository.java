@@ -11,7 +11,7 @@ public interface AccountRepository {
 
     public void saveAccount(Account account);
 
-    public void updateAccount(int id);
+    public void updateAccount(int id, Account account);
 
     public List<Account> getAccounts(List<Account> account);
 }
