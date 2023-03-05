@@ -20,7 +20,6 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Account getAccount(int id) {
         // get account
-
         try {
             //endpoint provvisorio
             String endPoint = "https://gorest.co.in/public/v2/users/"+id;
