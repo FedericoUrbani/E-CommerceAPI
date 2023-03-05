@@ -2,11 +2,11 @@ package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.ShoppingCart;
-import it.develhope.shoppyz.repository.IShoppingCartRepository;
 import it.develhope.shoppyz.repository.ShoppingCartRepository;
+import it.develhope.shoppyz.repository.ShoppingCartRepositoryImpl;
 
-public class ShoppingCartService implements IShoppingCartService{
-    IShoppingCartRepository cartRepository = new ShoppingCartRepository();
+public class ShoppingCartServiceImpl implements ShoppingCartService {
+    ShoppingCartRepository cartRepository = new ShoppingCartRepositoryImpl();
 
     public ShoppingCart getToCart(Product product){
         return cartRepository.getToCart(product);

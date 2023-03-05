@@ -3,9 +3,7 @@ package it.develhope.shoppyz.repository;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.ShoppingCart;
 
-import java.util.List;
-
-public interface IShoppingCartRepository {
+public interface ShoppingCartRepository {
     public ShoppingCart getToCart(Product product);
     public void postToCart(ShoppingCart shoppingCart);
     public void updateToCart(Product product);

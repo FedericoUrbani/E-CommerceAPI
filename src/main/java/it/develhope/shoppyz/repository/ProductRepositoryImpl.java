@@ -4,7 +4,7 @@ import it.develhope.shoppyz.entity.Product;
 
 import java.util.List;
 
-public class ProductRepository implements IProductRepository{
+public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Product getProduct(String id) {
         //prendere un prodotto

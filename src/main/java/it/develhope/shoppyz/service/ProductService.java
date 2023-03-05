@@ -4,7 +4,7 @@ import it.develhope.shoppyz.entity.Product;
 
 import java.util.List;
 
-public interface IProductService {
+public interface ProductService {
     /*
     metodi
      */

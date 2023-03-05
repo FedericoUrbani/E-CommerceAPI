@@ -3,9 +3,7 @@ package it.develhope.shoppyz.repository;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.ShoppingCart;
 
-import java.util.List;
-
-public class ShoppingCartRepository implements IShoppingCartRepository{
+public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     @Override
     public ShoppingCart getToCart(Product product) {
         //selezionare un prodotto al carrello

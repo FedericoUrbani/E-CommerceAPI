@@ -1,14 +1,14 @@
 package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.repository.IProductRepository;
 import it.develhope.shoppyz.repository.ProductRepository;
+import it.develhope.shoppyz.repository.ProductRepositoryImpl;
 
 import java.util.List;
 
-public class ProductService implements IProductService{
+public class ProductServiceImpl implements ProductService {
 
-    IProductRepository productRepository= new ProductRepository();
+    ProductRepository productRepository= new ProductRepositoryImpl();
     public Product getProduct(String id){
         return productRepository.getProduct(id);
     }

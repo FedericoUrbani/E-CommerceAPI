@@ -1,11 +1,8 @@
 package it.develhope.shoppyz.service;
 
-import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Product;
 
-import java.util.List;
-
-public interface IShoppingCartService {
+public interface ShoppingCartService {
     public void addProduct(Product product, int quantity);
     public void printItems();
     public double totalPrice();
