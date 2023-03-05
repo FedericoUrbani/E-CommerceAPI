@@ -11,7 +11,6 @@ public class ShoppingCart {
     private PaymentMethod paymentMethod;
     private int currentQuantity;
 
-
     List<Product> productList = new ArrayList<>();
     List<Integer> quantities = new ArrayList<>();
 
