@@ -1,5 +1,7 @@
 package it.develhope.shoppyz.payment;
 
+import it.develhope.shoppyz.entity.PaymentMethod;
+
 public class CreditCard extends PaymentMethod {
     private String cardNumber;
     private String cardHolder;

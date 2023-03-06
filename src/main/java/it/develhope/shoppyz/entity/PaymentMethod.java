@@ -1,4 +1,9 @@
-package it.develhope.shoppyz.payment;
+package it.develhope.shoppyz.entity;
+
+import it.develhope.shoppyz.payment.CashOnDelivery;
+import it.develhope.shoppyz.payment.Coupon;
+import it.develhope.shoppyz.payment.CreditCard;
+import it.develhope.shoppyz.payment.Paypal;
 
 public class PaymentMethod {
     private Paypal paypal;
@@ -36,5 +41,16 @@ public class PaymentMethod {
 
     public void setCashOnDelivery(CashOnDelivery cashOnDelivery) {
         this.cashOnDelivery = cashOnDelivery;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PaymentMethod{" +
+                "paypal=" + paypal +
+                ", creditCard=" + creditCard +
+                ", coupon=" + coupon +
+                ", cashOnDelivery=" + cashOnDelivery +
+                '}';
     }
 }
