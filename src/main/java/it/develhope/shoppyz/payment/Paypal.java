@@ -1,5 +1,7 @@
 package it.develhope.shoppyz.payment;
 
+import it.develhope.shoppyz.entity.PaymentMethod;
+
 public class Paypal extends PaymentMethod {
     private String email;
     private String password;

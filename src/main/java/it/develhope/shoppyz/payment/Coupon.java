@@ -1,5 +1,7 @@
 package it.develhope.shoppyz.payment;
 
+import it.develhope.shoppyz.entity.PaymentMethod;
+
 public class Coupon extends PaymentMethod {
     private String couponCode;
     private double discount;
