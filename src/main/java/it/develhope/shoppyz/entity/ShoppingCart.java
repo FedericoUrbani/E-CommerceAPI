@@ -7,7 +7,7 @@ public class ShoppingCart {
     private Product product;
     private double totalPrice;
     private PaymentMethod paymentMethod;
-    private int currentQuantity;
+
 
     List<Product> productList = new ArrayList<>();
     List<Integer> quantities = new ArrayList<>();
@@ -83,6 +83,4 @@ public class ShoppingCart {
             System.out.println(product.getId() + " not found in cart");
         }
     }
-
-
 }
