@@ -10,7 +10,7 @@ public class ProductTest {
 
     @BeforeEach
     void setUpProduct(){
-        product=new Product("01","food",9.99,"snackCheese.jpg","100");
+       // product=new Product("01","food",9.99,"snackCheese.jpg","100");
 
     }
 

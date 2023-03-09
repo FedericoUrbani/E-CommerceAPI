@@ -1,121 +1,109 @@
 package it.develhope.shoppyz.repository;
 
-import com.google.gson.Gson;
 import it.develhope.shoppyz.entity.Account;
-import com.google.gson.JsonObject;
-
-import javax.xml.crypto.Data;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountRepositoryImpl implements AccountRepository {
 
-    HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
-    HttpResponse response = null;
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet resultSet = null;
+    String url = "jdbc:mysql://localhost:3306/shoppyzdb";
+    String user = "root";
+    String password = "Alemelfi1394";
+
 
     @Override
     public Account getAccount(int id) {
-        // get account
+        //prendere un account
+        Account account = null;
         try {
-            //endpoint provvisorio
-            String endPoint = "https://gorest.co.in/public/v2/users/"+id;
-            URI uri = URI.create(endPoint);
-            HttpRequest request = HttpRequest.newBuilder().
-                    uri(uri).
-                    build();
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
+            conn = DriverManager.getConnection(url, user, password);
+            stmt = conn.createStatement();
+            resultSet = stmt.executeQuery("SELECT * FROM accounts WHERE id = '" + id + "'");
+            while (resultSet.next()) {
+                account = new Account(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getByte(4),
+                        resultSet.getByte(5),
+                        resultSet.getString(6)
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Body: " + response.body());
-        //estrapolo il contenuto della response e lo trasformo in classe Account
-        String responseString=response.body().toString();
-        Account returnAcc = new Gson().fromJson(responseString, Account.class);
-
-        return returnAcc;
-
-}
+        return account;
+    }
 
 
     @Override
     public void deleteAccount(int id) {
         //delete account where id is equal to (delete)
+        Account account = null;
         try {
-            String endPoint = "https://gorest.co.in/public/v2/users/"+id;
-            URI uri = URI.create(endPoint);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .DELETE()
-                    .uri(uri)
-                    .header("Authorization", "Bearer 362916d01206eee14ed5b0b6db6127a8cb9ad2692bf197e086c0b4fbfdc5a058").build();
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
+            conn = DriverManager.getConnection(url, user, password);
+            stmt = conn.createStatement();
+            stmt.execute("DELETE FROM accounts WHERE id = " + id + ";");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Body: " + response.body());
     }
 
     @Override
     public void saveAccount(Account account) {
         //save this account in the database (post)
-        Gson json= new Gson();
-        json.toJson(account);
-        String jsonString = json.toString();
-
         try {
-            String endPoint = "https://gorest.co.in/public/v2/users";
-            URI uri = URI.create(endPoint);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(uri)
-                    .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer 362916d01206eee14ed5b0b6db6127a8cb9ad2692bf197e086c0b4fbfdc5a058")
-                    .POST(HttpRequest.BodyPublishers.ofString(jsonString))
-                    .build();
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            conn = DriverManager.getConnection(url, user, password);
+            stmt = conn.createStatement();
+            stmt.execute("INSERT INTO accounts (name, password, sellsactivation, isenabled,email) VALUE ('"+account.getName()+"','"+account.getPassword()+"','"+account.getSellsactivation()+"','"+account.getEnabled()+"','"+account.getMail()+"');");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Body: " + response.body());
-
     }
 
     @Override
     public void updateAccount(int id,Account account) {
         //modify the account (put)
-        Gson json= new Gson();
-        json.toJson(account);
-        String jsonString = json.toString();
 
         try {
-            String endPoint = "https://gorest.co.in/public/v2/users/"+id;
-            URI uri = URI.create(endPoint);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(uri)
-                    .header("Accept","application/json")
-                    .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer 362916d01206eee14ed5b0b6db6127a8cb9ad2692bf197e086c0b4fbfdc5a058")
-                    .PUT(HttpRequest.BodyPublishers.ofString(jsonString))
-                    .build();
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            conn = DriverManager.getConnection(url, user, password);
+            stmt = conn.createStatement();
+            stmt.execute("UPDATE accounts (name, password, sellsactivation, isenabled,email) VALUE ('"+account.getName()+"','"+account.getPassword()+"','"+account.getSellsactivation()+"','"+account.getEnabled()+"','"+account.getMail()+"') WHERE id ="+id+";");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Body: " + response.body());
-
     }
 
     @Override
-    public List<Account> getAccounts(List<Account> account) {
+    public List<Account> getAccounts() {
         //gets a list of all accounts in the db
-        return null;
+        ArrayList<Account> accountList = new ArrayList<>();
+        Account account = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            stmt = conn.createStatement();
+            resultSet = stmt.executeQuery("SELECT * FROM accounts;");
+            while(resultSet.next()){
+                int id=resultSet.getInt(1);
+                String name=resultSet.getString(2);
+                String password= resultSet.getString(3);
+                byte sellsacc=resultSet.getByte(4);
+                byte isenabled=resultSet.getByte(5);
+                String email=resultSet.getString(6);
+                account = new Account(id,name,password,sellsacc,isenabled,email);
+                accountList.add(account);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return accountList;
     }
 }

@@ -15,4 +15,6 @@ public interface AccountService {
     public void doubleAuthenticationEnable(int id);
 
    public List<Account> listedAccounts(List<Account> list);
+
+    List<Account> listedAccounts();
 }
