@@ -14,7 +14,7 @@ Address address;
     void setUp() {
         address= new Address("via campaccio","Campo Basso", "Italia","01923");
         user = new User(1,"Roberto","Marziano",address,"3346893345","robertinoMarz@gmail.com");
-        account= new Account(1,user,"Robertino","gallo900");
+      //  account= new Account(1,user,"Robertino","gallo900");
     }
 
     @Test

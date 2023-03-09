@@ -30,34 +30,39 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void sellsActivation(int id) {
-        if (accountRepository.getAccount(id).getSellsAccountActivation() == false) {
-            accountRepository.getAccount(id).setSellsAccountActivation(true);
-        } else {
-            System.out.println("Account sells is already active");
-        }
+      //  if (accountRepository.getAccount(id).getSellsAccountActivation() == false) {
+        //    accountRepository.getAccount(id).setSellsAccountActivation(true);
+        //} else {
+          //  System.out.println("Account sells is already active");
+        //}
     }
 
     @Override
     public void disableAccount(int id) {
-        accountRepository.getAccount(id).setEnabledAccount(false);
+      //  accountRepository.getAccount(id).setEnabledAccount(false);
 
     }
 
     @Override
     public void enableAccount(int id) {
-        accountRepository.getAccount(id).setEnabledAccount(true);
+      //  accountRepository.getAccount(id).setEnabledAccount(true);
     }
 
     @Override
     public void doubleAuthenticationEnable(int id) {
-       accountRepository.getAccount(id).setDoubleAuthentication(true);
-       accountRepository.getAccount(id).setAuthenticatedPhoneNumber(accountRepository.getAccount(id).getUser().getPhoneNumber());
+     //  accountRepository.getAccount(id).setDoubleauthentication(true);
+       //accountRepository.getAccount(id).setAuthenticatedPhoneNumber(accountRepository.getAccount(id).getUser().getPhoneNumber());
 
     }
 
     @Override
     public List<Account> listedAccounts(List<Account> list) {
-            accountRepository.getAccounts(list);
+        return null;
+    }
+
+    @Override
+    public List<Account> listedAccounts() {
+
         return null;
     }
 

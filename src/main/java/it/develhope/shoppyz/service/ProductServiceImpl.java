@@ -10,7 +10,7 @@ public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository= new ProductRepositoryImpl();
     public Product getProduct(String id){
-        return productRepository.getProduct(id);
+        return null;//productRepository.getProduct(id);
     }
 
     public void postProduct(Product product){

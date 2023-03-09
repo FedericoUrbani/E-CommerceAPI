@@ -24,6 +24,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cartRepository.deleteToCart(product);
     }
 
+    @Override
+    public void addProduct(Product product, int quantity) {
+
+    }
+
+    @Override
+    public void printItems() {
+
+    }
+
+    @Override
+    public double totalPrice() {
+        return 0;
+    }
+
+    @Override
+    public void removedProduct(Product product, int quantity) {
+
+    }
+
     /*
     @Override
     public void addProduct(Product product, int quantity) {
