@@ -14,4 +14,5 @@ public interface AccountRepository {
     public void updateAccount(int id, Account account);
 
     public List<Account> getAccounts();
+
 }

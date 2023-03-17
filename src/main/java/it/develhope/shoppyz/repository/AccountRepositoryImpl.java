@@ -12,7 +12,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     ResultSet resultSet = null;
     String url = "jdbc:mysql://localhost:3306/shoppyzdb";
     String user = "root";
-    String password = "Alemelfi1394";
+    String password = "root";
 
 
     @Override

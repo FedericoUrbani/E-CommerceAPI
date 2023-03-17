@@ -12,7 +12,7 @@ public interface UserRepository {
 
     public void saveUser(User user);
 
-    public void updateUser(int id);
+    public void updateUser(int id, User user);
 
     public List<User> getUsers(List<User> account);
 }
