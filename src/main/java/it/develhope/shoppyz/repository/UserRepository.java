@@ -14,5 +14,5 @@ public interface UserRepository {
 
     public void updateUser(int id, User user);
 
-    public List<User> getUsers(List<User> account);
+    List<User> getUsers();
 }

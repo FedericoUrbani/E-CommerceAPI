@@ -1,12 +1,14 @@
 package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.User;
+import it.develhope.shoppyz.repository.UserRepository;
+import it.develhope.shoppyz.repository.UserRepositoryImpl;
 
 import java.util.List;
 
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
-    UserServiceImpl service= new UserServiceImpl();
+    UserRepositoryImpl service= new UserRepositoryImpl();
     /**
      * @return get the user with the id of:
      */

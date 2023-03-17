@@ -1,6 +1,5 @@
 package it.develhope.shoppyz.repository;
 
-import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.User;
 
 import java.sql.*;
@@ -87,7 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getUsers(List<User> account) {
+    public List<User> getUsers() {
         ArrayList<User> userList = new ArrayList<>();
         User user = null;
         try {
