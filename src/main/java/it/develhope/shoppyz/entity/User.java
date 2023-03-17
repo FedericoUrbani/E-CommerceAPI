@@ -6,28 +6,43 @@ public class User {
     private int id;
     private String name;
     private String surname;
-    private Address address;
+    private String address;
     private String phoneNumber;
+    private int accountId;
 
-    private String email;
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-
-   // public User() {
+// public User() {
     //}
 
-    public User(int id, String name, String surname, Address address, String phoneNumber, String email) {
+
+    public User(int id, String name, String surname, String address, String phoneNumber, int accountId) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.email=email;
-
+        this.accountId = accountId;
     }
+
+
 
     public User() {
 
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public int getId() {
@@ -55,14 +70,6 @@ public class User {
     }
 
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -71,25 +78,15 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-
-
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", address=" + address +
+                ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", accountId='" + accountId + '\'' +
                 '}';
     }
 }

@@ -20,7 +20,7 @@ public class Main {
         Connection connection = null;
         ArrayList<User> usersList = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shoppyzdb", "developer", "developer1");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shoppyzdb", "root", "root");
             System.out.println(connection != null);
         } catch (SQLException e) {
             throw new RuntimeException(e);

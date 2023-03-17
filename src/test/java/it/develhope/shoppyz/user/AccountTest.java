@@ -1,25 +1,28 @@
 package it.develhope.shoppyz.user;
 
 import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Address;
-import it.develhope.shoppyz.entity.User;
+import it.develhope.shoppyz.service.AccountServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 class AccountTest {
-User user;
-Account account;
-Address address;
+
+    AccountServiceImpl service= new AccountServiceImpl();
+
     @BeforeEach
     void setUp() {
-        address= new Address("via campaccio","Campo Basso", "Italia","01923");
-        user = new User(1,"Roberto","Marziano",address,"3346893345","robertinoMarz@gmail.com");
-      //  account= new Account(1,user,"Robertino","gallo900");
+        service.listedAccounts();
+        List<Account> list= service.listedAccounts();
+        Assert.assertTrue(list!=null);
     }
+
 
     @Test
     void runAccountToString(){
-        //mi stampa tutti i valori che sono presenti nelle classi address & user in account
+        Account account = service.getAccount(1);
         System.out.println(account.toString());
     }
 }

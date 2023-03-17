@@ -1,8 +1,8 @@
-\connect root@localhost;
+
+#non usate questa, non la cancello solo perchè dovrestre provare dbshoppyz
 DROP DATABASE shoppyzdb;
 CREATE DATABASE IF NOT EXISTS shoppyzdb;
-CREATE USER IF NOT EXISTS 'developer' IDENTIFIED BY 'developer1';
-GRANT ALL PRIVILEGES ON shoppyzdb . * TO 'developer'@'localhost';
+
 USE shoppyzdb;
 CREATE TABLE IF NOT EXISTS products(id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR (20),
@@ -31,5 +31,6 @@ INSERT INTO accounts (name, password, sellsactivation, isenabled,email) VALUE ('
 INSERT INTO accounts (name, password, sellsactivation, isenabled,email) VALUE ('JessicaRab','password',0,1,'jessichetta@gmail.com');
 INSERT INTO accounts (name, password, sellsactivation, isenabled,email) VALUE ('Alice','password',0,1,'alice23@gmail.com');
 INSERT INTO accounts (name, password, sellsactivation, isenabled,email) VALUE ('user4000','password',0,1,'user4000@gmail.com');
+
 
 
