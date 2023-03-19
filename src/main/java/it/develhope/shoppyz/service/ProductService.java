@@ -9,5 +9,5 @@ public interface ProductService {
     metodi
      */
 
-    public List<Product> listProduct(List<Product> list);
+     List<Product> listProduct();
 }

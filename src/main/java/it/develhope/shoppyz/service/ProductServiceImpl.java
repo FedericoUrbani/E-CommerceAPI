@@ -9,16 +9,16 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository= new ProductRepositoryImpl();
-    public Product getProduct(String id){
-        return null;//productRepository.getProduct(id);
+    public Product getProduct(int id){
+        return productRepository.getProduct(id);
     }
 
     public void postProduct(Product product){
         productRepository.postProduct(product);
     }
 
-    public void updateProduct(String id){
-        productRepository.updateProduct(id);
+    public void updateProduct(String id, Product product){
+        productRepository.updateProduct(id, product);
     }
 
     public void deleteProduct(String id){
@@ -26,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listProduct(List<Product> list) {
-        productRepository.getProduct(list);
-        return null;
+    public List<Product> listProduct() {
+        List<Product> productList = productRepository.getProduct();
+        return productList;
     }
 }
