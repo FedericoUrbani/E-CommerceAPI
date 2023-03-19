@@ -17,11 +17,11 @@ public class ProductServiceImpl implements ProductService {
         productRepository.postProduct(product);
     }
 
-    public void updateProduct(String id, Product product){
+    public void updateProduct(int id, Product product){
         productRepository.updateProduct(id, product);
     }
 
-    public void deleteProduct(String id){
+    public void deleteProduct(int id){
         productRepository.deleteProduct(id);
     }
 

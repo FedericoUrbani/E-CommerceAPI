@@ -52,7 +52,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void updateProduct(String id, Product product) {
+    public void updateProduct(int id, Product product) {
         //modificare un prodotto
         try {
             conn = DriverManager.getConnection(url, clientUser, password);
@@ -66,7 +66,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void deleteProduct(String id) {
+    public void deleteProduct(int id) {
         //cancellare un prodotto
         try {
             conn = DriverManager.getConnection(url, clientUser, password);
