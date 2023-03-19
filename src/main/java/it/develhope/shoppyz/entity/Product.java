@@ -95,5 +95,6 @@ public class Product {
                 ", productGroups=" + productGroups +
                 '}';
     }
+
 }
 
