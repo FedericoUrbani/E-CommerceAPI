@@ -1,15 +1,17 @@
 package it.develhope.shoppyz.entity;
 
-import it.develhope.shoppyz.payment.CashOnDelivery;
-import it.develhope.shoppyz.payment.Coupon;
-import it.develhope.shoppyz.payment.CreditCard;
-import it.develhope.shoppyz.payment.Paypal;
+import it.develhope.shoppyz.entity.payment.CashOnDelivery;
+import it.develhope.shoppyz.entity.payment.Coupon;
+import it.develhope.shoppyz.entity.payment.CreditCard;
+import it.develhope.shoppyz.entity.payment.Paypal;
 
 public class PaymentMethod {
     private Paypal paypal;
     private CreditCard creditCard;
     private Coupon coupon;
     private CashOnDelivery cashOnDelivery;
+
+
 
     public Paypal getPaypal() {
         return paypal;

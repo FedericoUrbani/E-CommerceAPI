@@ -12,6 +12,6 @@ public interface PaymentMethodRepository {
 
     public void updatePaymentMethod(String Method, PaymentMethod paymentMethod);
 
-    public List<PaymentMethod> getPaymentMethod(List<PaymentMethod> paymentMethod);
+    public List<PaymentMethod> getPaymentMethod();
 }
 

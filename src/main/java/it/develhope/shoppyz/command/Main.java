@@ -1,9 +1,6 @@
 package it.develhope.shoppyz.command;
 
 import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Address;
-import it.develhope.shoppyz.payment.CreditCard;
-import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.User;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.payment;
+package it.develhope.shoppyz.entity.payment;
 
 import it.develhope.shoppyz.entity.PaymentMethod;
 
