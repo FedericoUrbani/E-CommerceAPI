@@ -9,6 +9,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     UserRepositoryImpl service= new UserRepositoryImpl();
+    UserRepositoryImpl userRepository= new UserRepositoryImpl();
     /**
      * @return get the user with the id of:
      */
