@@ -2,7 +2,7 @@ package it.develhope.shoppyz.entity;
 
 import it.develhope.shoppyz.entity.Address;
 
-public class User {
+public class  User {
     private int id;
     private String name;
     private String surname;

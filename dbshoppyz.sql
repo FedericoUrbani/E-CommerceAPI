@@ -71,3 +71,23 @@ INSERT INTO `users` (`id`, `phoneNumber`, `accountId`, `name`, `surname`, `addre
 	(3, '3242545436', 3, 'Alice', 'Junior', 'Via Solcato 18, 12003, Venezia ');
 
 
+-- Dump della struttura di tabella shoppyzdb.orders
+CREATE TABLE IF NOT EXISTS orders (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int NOT NULL,
+  `trackingNumber` varchar(30) NOT NULL DEFAULT '0',
+  `numberOfItems` int NOT NULL DEFAULT '0',
+  `address` varchar(30) NOT NULL DEFAULT '0',
+  `isGift` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `FK__users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dump dei dati della tabella shoppyzdb.orders: ~4 rows (circa)
+DELETE FROM `orders`;
+INSERT INTO `orders` (`id`, `userId`, `trackingNumber`, `numberOfItems`, `address`, `isGift`) VALUES
+	(1, 3, '54353656', 2, 'via peppino 28', 0),
+	(2, 2, '54332336', 1, 'via francesca 128', 0),
+	(3, 1, '44566755', 3, 'via perino 28', 0),
+	(4, 1, '32344777', 1, 'via torre 2', 0);
