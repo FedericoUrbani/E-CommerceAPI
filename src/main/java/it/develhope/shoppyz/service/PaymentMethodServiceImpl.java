@@ -19,12 +19,12 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
 
     public void savePaymentMethod(PaymentMethod paymentMethod) {
-        paymentMethodRepository.savePaymentMethod();
+        paymentMethodRepository.savePaymentMethod(paymentMethod);
     }
 
     @Override
     public void deletePaymentMethod(String Method) {
-        paymentMethodRepository.deletePaymentMethod();
+        paymentMethodRepository.deletePaymentMethod(Method);
     }
 
     @Override
