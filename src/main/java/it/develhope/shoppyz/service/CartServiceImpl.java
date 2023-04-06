@@ -1,19 +1,19 @@
 package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.entity.ShoppingCart;
-import it.develhope.shoppyz.repository.ShoppingCartRepository;
-import it.develhope.shoppyz.repository.ShoppingCartRepositoryImpl;
+import it.develhope.shoppyz.entity.Cart;
+import it.develhope.shoppyz.repository.CartRepository;
+import it.develhope.shoppyz.repository.CartRepositoryImpl;
 
-public class ShoppingCartServiceImpl implements ShoppingCartService {
-    ShoppingCartRepository cartRepository = new ShoppingCartRepositoryImpl();
+public class CartServiceImpl implements CartService {
+    CartRepository cartRepository = new CartRepositoryImpl();
 
-    public ShoppingCart getToCart(Product product){
+    public Cart getToCart(Product product){
         return cartRepository.getToCart(product);
     }
 
-    public void postToCart(ShoppingCart shoppingCart){
-        cartRepository.postToCart(shoppingCart);
+    public void postToCart(Cart cart){
+        cartRepository.postToCart(cart);
     }
 
     public void updateToCart(Product product){
@@ -43,27 +43,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public void removedProduct(Product product, int quantity) {
 
     }
-
-    /*
-    @Override
-    public void addProduct(Product product, int quantity) {
-
-    }
-
-    @Override
-    public void printItems() {
-
-    }
-
-    @Override
-    public double totalPrice() {
-        return 0;
-    }
-
-    @Override
-    public void removedProduct(Product product, int quantity) {
-
-    }*/
 
     /*
     implementare i 4 metodi dell'interfaccia inserendo il corpo

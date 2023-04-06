@@ -1,11 +1,11 @@
 package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.entity.ShoppingCart;
+import it.develhope.shoppyz.entity.Cart;
 
-public interface ShoppingCartRepository {
-    public ShoppingCart getToCart(Product product);
-    public void postToCart(ShoppingCart shoppingCart);
+public interface CartRepository {
+    public Cart getToCart(Product product);
+    public void postToCart(Cart cart);
     public void updateToCart(Product product);
     public void deleteToCart(Product product);
 
