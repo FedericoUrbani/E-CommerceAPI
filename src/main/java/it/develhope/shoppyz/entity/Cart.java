@@ -3,7 +3,7 @@ package it.develhope.shoppyz.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class Cart {
     private Product product;
     private double totalPrice;
     private PaymentMethod paymentMethod;
@@ -13,7 +13,7 @@ public class ShoppingCart {
     List<Integer> quantities = new ArrayList<>();
 
 
-    public ShoppingCart(Product product, double totalPrice, PaymentMethod paymentMethod) {
+    public Cart(Product product, double totalPrice, PaymentMethod paymentMethod) {
         this.product = product;
         this.totalPrice = totalPrice;
         this.paymentMethod = paymentMethod;

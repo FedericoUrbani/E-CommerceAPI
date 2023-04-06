@@ -1,17 +1,17 @@
 package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.entity.ShoppingCart;
+import it.develhope.shoppyz.entity.Cart;
 
-public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
+public class CartRepositoryImpl implements CartRepository {
     @Override
-    public ShoppingCart getToCart(Product product) {
+    public Cart getToCart(Product product) {
         //selezionare un prodotto al carrello
         return null;
     }
 
     @Override
-    public void postToCart(ShoppingCart shoppingCart) {
+    public void postToCart(Cart cart) {
         //aggiungere un prodotto al carrello
     }
 
