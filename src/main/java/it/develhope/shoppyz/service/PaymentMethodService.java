@@ -1,18 +1,15 @@
 package it.develhope.shoppyz.service;
 
-import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.PaymentMethod;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface PaymentMethodService {
-    public void savePaymentMethod(PaymentMethod paymentMethod);
+    public void savePm(PaymentMethod paymentMethod) throws SQLException;
 
-    public void deletePaymentMethod(String Method);
+    public int findPm(int idPayment) throws SQLException;
+    public void deletePm(int idPayment) throws SQLException;
 
-    public void disablePaymentMethod(String Method);
 
-    public void enablePaymentMethod(String Method);
-
-    List<PaymentMethod> listedPaymentMethod();
 }
