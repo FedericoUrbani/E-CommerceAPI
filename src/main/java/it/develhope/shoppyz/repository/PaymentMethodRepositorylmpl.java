@@ -1,203 +1,115 @@
 package it.develhope.shoppyz.repository;
-
-import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.PaymentMethod;
-import it.develhope.shoppyz.entity.payment.CashOnDelivery;
-import it.develhope.shoppyz.entity.payment.Coupon;
-import it.develhope.shoppyz.entity.payment.CreditCard;
-import it.develhope.shoppyz.entity.payment.Paypal;
+
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PaymentMethodRepositorylmpl implements PaymentMethodRepository {
 
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet resultSet = null;
     String url = "jdbc:mysql://localhost:3306/shoppyzdb";
     String user = "root";
     String password = "root";
 
-
-
-
     @Override
-    public PaymentMethod getPaymentMethod(String Method) {
-        //Get payment Method
-        PaymentMethod paymentMethod = null;
+    public void savePm(PaymentMethod paymentMethod) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         try {
             conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM payment_methods WHERE Method = '" + Method + "'");
-            while (resultSet.next()) {
-                String paymentMethodType = resultSet.getString(1);
-                if (paymentMethodType.equals("Paypal")) {
-                    String email = resultSet.getString(2);
-                    String paypalPassword = resultSet.getString(3);
-                    paymentMethod = new Paypal(email, paypalPassword);
 
-                } else if (paymentMethodType.equals("CashOnDelivery")) {
-                    //other payment method types here
-                    double amount = resultSet.getDouble(4);
-                    paymentMethod = new CashOnDelivery(amount);
+            String query = "INSERT INTO paymentMethod (type, paymentInformation, idOrder) VALUES (?, ?, ?)";
+            stmt = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            //associare l'ID del pagamento appena creato all'oggetto PaymentMethod.
 
-                } else if (paymentMethodType.equals("Coupon")) {
-                    String couponCode = resultSet.getString(4);
-                    double discount = resultSet.getDouble(5);
-                    paymentMethod = new Coupon(couponCode, discount);
+            stmt.setString(1, paymentMethod.getType().name());
+            stmt.setString(2, paymentMethod.getPaymentInformation());
+            stmt.setInt(3, paymentMethod.getIdOrder());
+            stmt.executeUpdate();
+            rs = stmt.getGeneratedKeys();
 
-                }else if (paymentMethodType.equals("CreditCard")) {
-                    String cardNumber = resultSet.getString(4);
-                    String cardHolder = resultSet.getString(5);
-                    int securityCodeCCV = resultSet.getInt(6);
-                    String expirationDate = resultSet.getString(7);
-                    paymentMethod = new CreditCard(cardNumber,cardHolder,securityCodeCCV,expirationDate);
-
-                }
+            if (rs.next()) {
+                paymentMethod.setIdPayment(rs.getInt(1));
             }
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            stmt.close();
+            conn.close();
         }
+
+
+    }
+
+    @Override
+    public PaymentMethod findPm(int idPayment) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        PaymentMethod paymentMethod = null;
+
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            String query = "SELECT * FROM paymentMethod WHERE paymentInformation = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idPayment);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                PaymentMethod.Type type = PaymentMethod.Type.valueOf(rs.getString("type"));
+                String paymentInformation = rs.getString("paymentInformation");
+                int idOrder = rs.getInt("idOrder");
+
+                paymentMethod = new PaymentMethod(type, paymentInformation, idOrder);
+                paymentMethod.setIdPayment(idPayment);
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            stmt.close();
+            conn.close();
+        }
+
+
         return paymentMethod;
 
-
-}
-
-    @Override
-    public void deletePaymentMethod(String Method) {
-        //delete account where method is equal to (delete)
-        PaymentMethod paymentMethod = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
-            stmt.execute("DELETE FROM payment_methods WHERE Method = " + Method + ";");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 
+    public void deletePm(int idPayment) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
 
-
-    @Override
-    public void savePaymentMethod(PaymentMethod paymentMethod) {
-        //save this PaymentMethod in the database
         try {
             conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
-            if (paymentMethod instanceof Paypal) {
-                Paypal paypal = (Paypal) paymentMethod;
-                String email = paypal.getEmail();
-                String password= paypal.getPassword();
-                // Inserire l'indirizzo email e password di Paypal nella query di inserimento
-                stmt.execute("INSERT INTO payment_methods(email,password) VALUES ('" + email + "','"+ password+"');");
-            } else if (paymentMethod instanceof CashOnDelivery){
-                CashOnDelivery cashOnDelivery=(CashOnDelivery) paymentMethod;
-                Double amount = cashOnDelivery.getAmount();
-                // Inserire l'amount di cashOnDelivery nella query di inserimento
-                stmt.execute("INSERT INTO payment_methods(amount) VALUES (" +amount+"');");
-            } else if (paymentMethod instanceof Coupon ) {
-                Coupon coupon=(Coupon) paymentMethod;
-                String couponCode= coupon.getCouponCode();
-                double discount = coupon.getDiscount();
-                stmt.execute("INSERT INTO payment_methods(couponCode,discount) VALUES ('" + couponCode + "','"+ discount+"');");
+            String query = "DELETE FROM paymentMethod WHERE idPayment = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idPayment);
+            stmt.executeUpdate();
 
-            } else if (paymentMethod instanceof CreditCard) {
-                CreditCard creditCard= (CreditCard) paymentMethod;
-                String cardNumber=creditCard.getCardNumber();
-                String cardHolder= creditCard.getCardHolder();
-                int securityCodeCCV= creditCard.getSecurityCodeCCV();
-                String expirationDate= creditCard.getExpirationDate();
-                stmt.execute("INSERT INTO payment_methods(cardNumber,cardHolder,securityCodeCCV,expirationDate) VALUES ('" + cardNumber + "','"+ cardHolder+"','"+ securityCodeCCV+"','"+ expirationDate+"');");
 
-            }
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            stmt.close();
+            conn.close();
+
         }
 
-    }
 
-    @Override
-    public void updatePaymentMethod(String Method, PaymentMethod paymentMethod) {
-        //update PaymentMethod
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
-            if (paymentMethod instanceof Paypal) {
-                Paypal paypal = (Paypal) paymentMethod;
-                String email = paypal.getEmail();
-                String password= paypal.getPassword();
-                // Inserire l'indirizzo email e password di Paypal nella query di inserimento
-                stmt.execute("UPDATE payment_methods(email,password) VALUES ('" + email + "','"+ password+"')WHERE Method ="+Method+";");
-            } else if (paymentMethod instanceof CashOnDelivery){
-                CashOnDelivery cashOnDelivery=(CashOnDelivery) paymentMethod;
-                Double amount = cashOnDelivery.getAmount();
-                // Inserire l'amount di cashOnDelivery nella query di inserimento
-                stmt.execute("UPDATE payment_methods(amount) VALUES (" +amount+"');WHERE Method ="+Method+";");
-            } else if (paymentMethod instanceof Coupon ) {
-                Coupon coupon=(Coupon) paymentMethod;
-                String couponCode= coupon.getCouponCode();
-                double discount = coupon.getDiscount();
-                stmt.execute("UPDATE payment_methods(couponCode,discount) VALUES ('" + couponCode + "','"+ discount+"')WHERE Method ="+Method+";");
-
-            } else if (paymentMethod instanceof CreditCard) {
-                CreditCard creditCard= (CreditCard) paymentMethod;
-                String cardNumber=creditCard.getCardNumber();
-                String cardHolder= creditCard.getCardHolder();
-                int securityCodeCCV= creditCard.getSecurityCodeCCV();
-                String expirationDate= creditCard.getExpirationDate();
-                stmt.execute("UPDATE payment_methods(cardNumber,cardHolder,securityCodeCCV,expirationDate) VALUES ('" + cardNumber + "','"+ cardHolder+"','"+ securityCodeCCV+"','"+ expirationDate+"')WHERE Method ="+Method+";");
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-
-
-    @Override
-    public List<PaymentMethod> getPaymentMethod() {
-        ArrayList<PaymentMethod> paymentMethodList= new ArrayList<>();
-        PaymentMethod paymentMethod=null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
-            resultSet = stmt.executeQuery("SELECT * FROM payment_methods;");
-            while (resultSet.next()) {
-                String paymentMethodType = resultSet.getString(1);
-                if (paymentMethodType.equals("Paypal")) {
-                    String email = resultSet.getString(2);
-                    String paypalPassword = resultSet.getString(3);
-                    paymentMethod = new Paypal(email, paypalPassword);
-                    paymentMethodList.add(paymentMethod);
-                } else if (paymentMethodType.equals("CashOnDelivery")) {
-                    //other payment method types here
-                    double amount = resultSet.getDouble(4);
-                    paymentMethod = new CashOnDelivery(amount);
-                    paymentMethodList.add(paymentMethod);
-
-                } else if (paymentMethodType.equals("Coupon")) {
-                    String couponCode = resultSet.getString(4);
-                    double discount = resultSet.getDouble(5);
-                    paymentMethod = new Coupon(couponCode, discount);
-                    paymentMethodList.add(paymentMethod);
-
-                }else if (paymentMethodType.equals("CreditCard")) {
-                    String cardNumber = resultSet.getString(4);
-                    String cardHolder = resultSet.getString(5);
-                    int securityCodeCCV = resultSet.getInt(6);
-                    String expirationDate = resultSet.getString(7);
-                    paymentMethod = new CreditCard(cardNumber,cardHolder,securityCodeCCV,expirationDate);
-                    paymentMethodList.add(paymentMethod);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return paymentMethodList;
     }
 }
+
+

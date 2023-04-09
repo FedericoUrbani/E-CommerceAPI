@@ -1,58 +1,42 @@
 package it.develhope.shoppyz.entity;
 
-import it.develhope.shoppyz.entity.payment.CashOnDelivery;
-import it.develhope.shoppyz.entity.payment.Coupon;
-import it.develhope.shoppyz.entity.payment.CreditCard;
-import it.develhope.shoppyz.entity.payment.Paypal;
-
 public class PaymentMethod {
-    private Paypal paypal;
-    private CreditCard creditCard;
-    private Coupon coupon;
-    private CashOnDelivery cashOnDelivery;
+    public enum Type {
+    creditCard,
+    paypal
+    }
+    private Type type;
+    private String paymentInformation;
+    private int idPayment;
+    private int idOrder;
 
-
-
-    public Paypal getPaypal() {
-        return paypal;
+    public PaymentMethod(Type type, String paymentInformation, int idOrder) {
+        this.type = type;
+        this.paymentInformation = paymentInformation;
+        this.idOrder = idOrder;
     }
 
-    public void setPaypal(Paypal paypal) {
-        this.paypal = paypal;
+    public Type getType() {
+        return type;
     }
 
-    public CreditCard getCreditCard() {
-        return creditCard;
+    public String getPaymentInformation() {
+        return paymentInformation;
     }
 
-    public void setCreditCard(CreditCard creditCard) {
-        this.creditCard = creditCard;
+    public int getIdPayment() {
+        return idPayment;
     }
 
-    public Coupon getCoupon() {
-        return coupon;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setCoupon(Coupon coupon) {
-        this.coupon = coupon;
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
     }
 
-    public CashOnDelivery getCashOnDelivery() {
-        return cashOnDelivery;
-    }
-
-    public void setCashOnDelivery(CashOnDelivery cashOnDelivery) {
-        this.cashOnDelivery = cashOnDelivery;
-    }
-
-
-    @Override
-    public String toString() {
-        return "PaymentMethod{" +
-                "paypal=" + paypal +
-                ", creditCard=" + creditCard +
-                ", coupon=" + coupon +
-                ", cashOnDelivery=" + cashOnDelivery +
-                '}';
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 }
