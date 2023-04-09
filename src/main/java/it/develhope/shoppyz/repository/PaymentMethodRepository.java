@@ -1,17 +1,13 @@
 package it.develhope.shoppyz.repository;
 import it.develhope.shoppyz.entity.PaymentMethod;
 
-import java.util.List;
+import java.sql.SQLException;
 
 public interface PaymentMethodRepository {
-    public PaymentMethod getPaymentMethod(String Method);
+    public void savePm(PaymentMethod paymentMethod) throws SQLException;
 
-    public void deletePaymentMethod(String Method);
+    public PaymentMethod findPm(int idPayment) throws SQLException;
 
-    public void savePaymentMethod(PaymentMethod paymentMethod);
-
-    public void updatePaymentMethod(String Method, PaymentMethod paymentMethod);
-
-    public List<PaymentMethod> getPaymentMethod();
+    public void deletePm(int idPayment) throws SQLException;
 }
 
