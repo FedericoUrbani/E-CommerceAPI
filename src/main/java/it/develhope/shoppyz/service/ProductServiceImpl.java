@@ -6,13 +6,13 @@ import it.develhope.shoppyz.repository.ProductRepositoryImpl;
 
 import java.util.List;
 
-public class ProductServiceImpl implements ProductService {
+public abstract class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository= new ProductRepositoryImpl();
-    public Product getProduct(int id){
+  /*  public Product getProduct(int id){
         return productRepository.getProduct(id);
     }
-
+*/
     public void postProduct(Product product){
         productRepository.postProduct(product);
     }
