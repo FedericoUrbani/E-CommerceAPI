@@ -1,10 +1,39 @@
 package it.develhope.shoppyz.entity;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+
+@Entity
+@Table(name = "cart")
 public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "Date")
+    private Date createDate;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name="User_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="Product_id")
     private Product product;
+
+
+
+
+
+
     private double totalPrice;
     private PaymentMethod paymentMethod;
 

@@ -1,10 +1,14 @@
 package it.develhope.shoppyz.service;
 
+import it.develhope.shoppyz.DTO.Cart.CART_DTO_ADD;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.Cart;
 import it.develhope.shoppyz.repository.CartRepository;
 import it.develhope.shoppyz.repository.CartRepositoryImpl;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class CartServiceImpl implements CartService {
     CartRepository cartRepository = new CartRepositoryImpl();
 
@@ -41,6 +45,15 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void removedProduct(Product product, int quantity) {
+
+    }
+
+    @Override
+    public void addToCart(CART_DTO_ADD cartDtoAdd) {
+
+        //Validare id prodotto
+
+        ProductServiceImpl.findById(cartDtoAdd.getProduct_id());
 
     }
 

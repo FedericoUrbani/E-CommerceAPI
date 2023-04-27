@@ -2,8 +2,9 @@ package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.Cart;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartRepository {
+public interface CartRepository  {
     public Cart getToCart(Product product);
     public void postToCart(Cart cart);
     public void updateToCart(Product product);
