@@ -6,13 +6,20 @@ import it.develhope.shoppyz.repository.ProductRepositoryImpl;
 
 import java.util.List;
 
-public abstract class ProductServiceImpl implements ProductService {
+public  class ProductServiceImpl {
 
     ProductRepository productRepository= new ProductRepositoryImpl();
-  /*  public Product getProduct(int id){
-        return productRepository.getProduct(id);
+
+    public static void findById(int productId) {
+
+        // ridefinire prodotto cosi da poter trovare id e inserire product not exist exception
+
     }
-*/
+
+    /*  public Product getProduct(int id){
+          return productRepository.getProduct(id);
+      }
+  */
     public void postProduct(Product product){
         productRepository.postProduct(product);
     }
@@ -25,7 +32,6 @@ public abstract class ProductServiceImpl implements ProductService {
         productRepository.deleteProduct(id);
     }
 
-    @Override
     public List<Product> listProduct() {
         List<Product> productList = productRepository.getProduct();
         return productList;
