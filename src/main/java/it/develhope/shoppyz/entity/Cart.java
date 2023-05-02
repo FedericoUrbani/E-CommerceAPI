@@ -23,7 +23,7 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name="User_id")
-    private User user;
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name="Product_id")
