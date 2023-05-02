@@ -1,7 +1,6 @@
 package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Order;
-import it.develhope.shoppyz.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     String user = "root";
     String password = "root";
 
-    UserRepositoryImpl userRepository= new UserRepositoryImpl();
+
     @Override
     public Order getOrder(int id) {
         //prendere un order
@@ -54,7 +53,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
     }
 
-    @Override
+   /* @Override
     public void saveOrder(Order order, int userId){
         //save this order in the database (post)
         User buyer = userRepository.getUser(userId);
@@ -66,7 +65,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     @Override
     public void updateOrder(int id, Order order) {
