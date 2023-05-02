@@ -1,26 +1,37 @@
 package it.develhope.shoppyz.entity;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(nullable = false)
     private String street;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String state;
+    @Column(nullable = false)
     private String postalCode;
 
-    public Address(String street, String city, String state, String postalCode) {
+    public Address(){}
+
+    public Address(Integer id, String street, String city, String state, String postalCode) {
+        this.id = id;
         this.street = street;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                '}';
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStreet() {
