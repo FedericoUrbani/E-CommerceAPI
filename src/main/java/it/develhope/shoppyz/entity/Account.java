@@ -1,39 +1,50 @@
 package it.develhope.shoppyz.entity;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
 public class Account {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(nullable = false)
     private String name;
-    private String password;
-    private byte sellsactivation;
-    private byte enabled;
+    @Column(nullable = false)
+    private String surname;
+    @Column(nullable = false)
+    @OneToMany
+    private List<Address> address;
+    @Column(nullable = false, unique = true)
+    private String phoneNumber;
+    @Column(nullable = false)
+    private String enabled;
+    @Column(nullable = false, unique = true)
     private String email;
 
-    public Account(int id, String name, String password, byte sellsactivation, byte isenabled, String email) {
+    @Column(nullable = true)
+    @OneToMany
+    private List<PaymentMethod> savedPaymentMethods;
+
+    public Account(Integer id, String name, String surname, List<Address> address, String phoneNumber, String enabled, String email, List<PaymentMethod> savedPaymentMethods) {
         this.id = id;
         this.name = name;
-        this.password = password;
-        this.sellsactivation = sellsactivation;
-        this.enabled = isenabled;
+        this.surname = surname;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.enabled = enabled;
         this.email = email;
+        this.savedPaymentMethods = savedPaymentMethods;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", sellsactivation=" + sellsactivation +
-                ", enabled=" + enabled +
-                ", mail='" + email + '\'' +
-                '}';
-    }
+    public Account (){}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,38 +56,51 @@ public class Account {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public byte getSellsactivation() {
-        return sellsactivation;
+    public List<Address> getAddress() {
+        return address;
     }
 
-    public void setSellsactivation(byte sellsactivation) {
-        this.sellsactivation = sellsactivation;
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
 
-    public byte getEnabled() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(byte enabled) {
+    public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
 
-
-    public String getMail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setMail(String mail) {
+    public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<PaymentMethod> getSavedPaymentMethods() {
+        return savedPaymentMethods;
+    }
+
+    public void setSavedPaymentMethods(List<PaymentMethod> savedPaymentMethods) {
+        this.savedPaymentMethods = savedPaymentMethods;
+    }
 }
-
-
