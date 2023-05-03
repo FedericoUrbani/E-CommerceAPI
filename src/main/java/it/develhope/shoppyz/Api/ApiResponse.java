@@ -3,6 +3,7 @@ package it.develhope.shoppyz.Api;
 import java.time.LocalDateTime;
 
 public class ApiResponse {
+    /*
 
     private final boolean success;
     private final String message;
@@ -24,5 +25,7 @@ public class ApiResponse {
     public String getTimeStamp(){
         return LocalDateTime.now().toString();
     }
+
+     */
 
 }
