@@ -1,15 +1,16 @@
 package it.develhope.shoppyz.repository;
 
+import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CartRepository  {
-    public Cart getToCart(Product product);
-    public void postToCart(Cart cart);
-    public void updateToCart(Product product);
-    public void deleteToCart(Product product);
+import java.util.Optional;
 
-    //public List<ShoppingCart> getToCart(List<ShoppingCart> shoppingCarts);
+@Repository
+public interface CartRepository extends JpaRepository<Account,Integer> {
+
+
 
 }

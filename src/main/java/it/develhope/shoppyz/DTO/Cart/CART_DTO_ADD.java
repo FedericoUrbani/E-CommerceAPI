@@ -1,12 +1,12 @@
 package it.develhope.shoppyz.DTO.Cart;
-import org.jetbrains.annotations.NotNull;
+
 
 public class CART_DTO_ADD {
 
     private int id;
-    @NotNull
+
     private int  product_id;
-    @NotNull
+
     private int quantity;
 
     public CART_DTO_ADD() {

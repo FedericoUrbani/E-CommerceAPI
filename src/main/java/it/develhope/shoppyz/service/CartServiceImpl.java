@@ -4,14 +4,13 @@ import it.develhope.shoppyz.DTO.Cart.CART_DTO_ADD;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.Cart;
 import it.develhope.shoppyz.repository.CartRepository;
-import it.develhope.shoppyz.repository.CartRepositoryImpl;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class CartServiceImpl implements CartService {
-    CartRepository cartRepository = new CartRepositoryImpl();
-
+    CartRepository cartRepository ;
+/*
     public Cart getToCart(Product product){
         return cartRepository.getToCart(product);
     }
@@ -27,6 +26,8 @@ public class CartServiceImpl implements CartService {
     public void deleteToCart(Product product){
         cartRepository.deleteToCart(product);
     }
+    */
+
 
     @Override
     public void addProduct(Product product, int quantity) {
@@ -53,16 +54,19 @@ public class CartServiceImpl implements CartService {
 
         //Validare id prodotto
 
-        ProductServiceImpl.findById(cartDtoAdd.getProduct_id());
+       // ProductServiceImpl.findById(cartDtoAdd.getProduct_id());
 
     }
 
-    /*
-    implementare i 4 metodi dell'interfaccia inserendo il corpo
-    metodo addProduct(){}
-    metodo printItems(){}
-    metodo totalPrice(){}
-    metodo removeProduct(){}
-     */
+    @Override
+    public Cart getCartByUserId(int userId) {
+        return null;
+    }
+
+    @Override
+    public void saveCart(Cart cart) {
+       // Cart cartSaved = cartRepository.save(cart);
+    }
+
 
 }

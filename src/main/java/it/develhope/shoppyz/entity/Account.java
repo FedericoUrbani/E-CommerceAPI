@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +23,7 @@ public class Account {
     private String enabled;
     @Column(nullable = false, unique = true)
     private String email;
+
 
     @Column(nullable = true)
     @OneToMany

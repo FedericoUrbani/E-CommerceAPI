@@ -1,12 +1,11 @@
 package it.develhope.shoppyz.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.ArrayList;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
-
+@Entity
+@Table
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

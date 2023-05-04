@@ -1,11 +1,12 @@
 package it.develhope.shoppyz.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table
 public class Order {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int userId;

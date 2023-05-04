@@ -1,13 +1,15 @@
 package it.develhope.shoppyz.repository;
+import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.PaymentMethod;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
-public interface PaymentMethodRepository {
-    public void savePm(PaymentMethod paymentMethod) throws SQLException;
+@Repository
+public interface PaymentMethodRepository extends JpaRepository<Account,Integer> {
 
-    public PaymentMethod findPm(int idPayment) throws SQLException;
 
-    public void deletePm(int idPayment) throws SQLException;
+
 }
-
