@@ -1,7 +1,5 @@
 package it.develhope.shoppyz.service;
 
-
-
 import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;

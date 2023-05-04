@@ -1,6 +1,11 @@
 package it.develhope.shoppyz.entity;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 public class Order {
+
     private int id;
 
     private int userId;

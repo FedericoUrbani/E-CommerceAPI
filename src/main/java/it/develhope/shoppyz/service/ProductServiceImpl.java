@@ -2,38 +2,41 @@ package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.repository.ProductRepository;
-import it.develhope.shoppyz.repository.ProductRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.lang.annotation.Documented;
 import java.util.List;
+import java.util.Optional;
 
-public  class ProductServiceImpl {
+@Service
+public  class ProductServiceImpl implements ProductService{
 
-    ProductRepository productRepository= new ProductRepositoryImpl();
+    @Autowired
+    ProductRepository productRepository;
 
     public static void findById(int productId) {
-
         // ridefinire prodotto cosi da poter trovare id e inserire product not exist exception
-
     }
 
-    /*  public Product getProduct(int id){
-          return productRepository.getProduct(id);
+      public Optional<Product> getProduct(Integer id){
+          return productRepository.findById(id);
       }
-  */
+
     public void postProduct(Product product){
-        productRepository.postProduct(product);
+        productRepository.saveAndFlush(product);
     }
 
-    public void updateProduct(int id, Product product){
-        productRepository.updateProduct(id, product);
+    @Override
+    public void updateProduct(Product product){
+        productRepository.saveAndFlush(product);
     }
-
-    public void deleteProduct(int id){
-        productRepository.deleteProduct(id);
+    @Override
+    public void deleteProduct(Product product){
+        productRepository.delete(product);
     }
-
-    public List<Product> listProduct() {
-        List<Product> productList = productRepository.getProduct();
-        return productList;
+    @Override
+    public List<Product> getProductList() {
+        return productRepository.findAll();
     }
 }
