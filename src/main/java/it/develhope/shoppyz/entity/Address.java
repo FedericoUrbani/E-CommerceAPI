@@ -3,11 +3,10 @@ package it.develhope.shoppyz.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)

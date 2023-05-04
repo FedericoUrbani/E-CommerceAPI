@@ -2,27 +2,28 @@ package it.develhope.shoppyz.entity;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
-@Table
+@Table(name = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private int userId;
-
+    @Column
     private String trackingNumber;
-    private int numberOfItems;
 
-    private String address;
-    private int isgift;
+    @Column
+    private byte isgift;
 
-    public Order(int id, int userId, String trackingNumber, int numberOfItems, String address, int isgift) {
+    public Order(){
+
+    }
+
+    public Order(int id, String trackingNumber, byte isgift) {
         this.id = id;
-        this.userId = userId;
         this.trackingNumber = trackingNumber;
-        this.numberOfItems = numberOfItems;
-        this.address = address;
         this.isgift = isgift;
     }
 
@@ -34,14 +35,6 @@ public class Order {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getTrackingNumber() {
         return trackingNumber;
     }
@@ -50,39 +43,12 @@ public class Order {
         this.trackingNumber = trackingNumber;
     }
 
-    public int getNumberOfItems() {
-        return numberOfItems;
-    }
 
-    public void setNumberOfItems(int numberOfItems) {
-        this.numberOfItems = numberOfItems;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getIsgift() {
+    public byte isIsgift() {
         return isgift;
     }
 
-    public void setIsgift(int isgift) {
+    public void setIsgift(byte isgift) {
         this.isgift = isgift;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", trackingNumber='" + trackingNumber + '\'' +
-                ", numberOfItems=" + numberOfItems +
-                ", address='" + address + '\'' +
-                ", isgift=" + isgift +
-                '}';
     }
 }

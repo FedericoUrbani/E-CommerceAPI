@@ -15,13 +15,9 @@ public  class ProductServiceImpl implements ProductService{
     ProductRepository productRepository;
 
 
-    public static void findById(int productId) {
-        // ridefinire prodotto cosi da poter trovare id e inserire product not exist exception
+    public Optional<Product> getProduct(Integer id){
+        return productRepository.findById(id);
     }
-
-      public Optional<Product> getProduct(Integer id){
-          return productRepository.findById(id);
-      }
 
     public void postProduct(Product product){
         productRepository.saveAndFlush(product);
@@ -39,5 +35,5 @@ public  class ProductServiceImpl implements ProductService{
     public List<Product> getProductList() {
         return productRepository.findAll();
     }
-    */
+
 }

@@ -21,67 +21,23 @@ public class Cart {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name="User_id")
-    private Account account;
 
-    /*@ManyToOne
-    @JoinColumn(name="Product_id")*/
-    private Product product;
-
-
-
-    private double totalPrice;
-    private PaymentMethod paymentMethod;
-
-
-    List<Product> productList = new ArrayList<>();
-    List<Integer> quantities = new ArrayList<>();
-
-
-    public Cart(Product product, double totalPrice, PaymentMethod paymentMethod) {
-        this.product = product;
-        this.totalPrice = totalPrice;
-        this.paymentMethod = paymentMethod;
+    public int getId() {
+        return id;
     }
 
-    public Product getProduct() {
-        return product;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(PaymentMethod paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public int getQuantity() {
+        return quantity;
     }
 
 
-    public int getProductId(int productId) {
-        for (Product product : productList) {
-            if (product.getId()==productId) {
-                return product.getId();
-            }
-        }
-        return Integer.parseInt(null);
+    public Cart(int id, Date createDate, int quantity) {
+        this.id = id;
+        this.createDate = createDate;
+        this.quantity = quantity;
     }
-
-    public void addProduct(Product product) {
-        productList.add(product);
-    }
-
-
 }
