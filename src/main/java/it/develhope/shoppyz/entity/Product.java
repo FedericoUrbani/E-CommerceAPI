@@ -1,5 +1,6 @@
 package it.develhope.shoppyz.entity;
 
+import java.util.ArrayList;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,10 +10,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String brand;
+    @Column(nullable = false)
     private String type;
+    @Column(nullable = false)
     private double price;
+    @Column
     private int stockedAmount;
 
     public Product(int id, String name, String brand, String type, double price, int stockedAmount) {
