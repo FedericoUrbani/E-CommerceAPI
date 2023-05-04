@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +13,7 @@ public class Account {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Column(nullable = false)
-    @OneToMany
-    private List<Address> address;
+
     @Column(nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false)
@@ -24,20 +21,15 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String email;
 
-
-    @Column(nullable = true)
-    @OneToMany
-    private List<PaymentMethod> savedPaymentMethods;
-
-    public Account(Integer id, String name, String surname, List<Address> address, String phoneNumber, String enabled, String email, List<PaymentMethod> savedPaymentMethods) {
+    public Account(Integer id, String name, String surname, String phoneNumber, String enabled, String email/*, List<PaymentMethod> savedPaymentMethods*/) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.address = address;
+
         this.phoneNumber = phoneNumber;
         this.enabled = enabled;
         this.email = email;
-        this.savedPaymentMethods = savedPaymentMethods;
+
     }
 
     public Account (){}
@@ -66,13 +58,6 @@ public class Account {
         this.surname = surname;
     }
 
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    public void setAddress(List<Address> address) {
-        this.address = address;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -97,7 +82,7 @@ public class Account {
     public void setEmail(String email) {
         this.email = email;
     }
-
+/*
     public List<PaymentMethod> getSavedPaymentMethods() {
         return savedPaymentMethods;
     }
@@ -105,4 +90,6 @@ public class Account {
     public void setSavedPaymentMethods(List<PaymentMethod> savedPaymentMethods) {
         this.savedPaymentMethods = savedPaymentMethods;
     }
+    */
+
 }

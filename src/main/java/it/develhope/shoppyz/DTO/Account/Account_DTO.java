@@ -1,9 +1,6 @@
 package it.develhope.shoppyz.DTO.Account;
 
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class Account_DTO {
 
     private Integer id;
@@ -46,7 +43,7 @@ public class Account_DTO {
         this.email = email;
     }
 
-
+    public Account_DTO (){}
     public Account_DTO(Integer id, String name, String surname, String email) {
         this.id = id;
         this.name = name;
