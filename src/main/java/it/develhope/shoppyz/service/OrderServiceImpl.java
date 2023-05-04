@@ -1,17 +1,20 @@
 package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Order;
-import it.develhope.shoppyz.repository.OrderRepositoryImpl;
+
 
 
 import java.util.List;
 
-public class OrderServiceImpl implements OrderService{
-    OrderRepositoryImpl orderRepository=new OrderRepositoryImpl();
+public class OrderServiceImpl {
 
+
+   // OrderRepositoryImpl orderRepository=new OrderRepositoryImpl();
+/*
     /**
      * @return Get the order with the id of:
      */
+   /*
     @Override
     public Order getOrder(int id) {
 
@@ -20,6 +23,7 @@ public class OrderServiceImpl implements OrderService{
     /**
      * @return delete the order with the id of:
      */
+   /*
     @Override
     public void deleteOrder(int id) {
         orderRepository.deleteOrder(id);
@@ -34,6 +38,7 @@ public class OrderServiceImpl implements OrderService{
     /**
      * @return update the order with the id of with the order:
      */
+   /*
     @Override
     public void updateOrder(int id, Order order) {
         orderRepository.updateOrder(id,order);
@@ -41,8 +46,11 @@ public class OrderServiceImpl implements OrderService{
     /**
      * @return Get the list of all orders:
      */
+   /*
     @Override
     public List<Order> getOrders() {
         return orderRepository.getOrders();
     }
+
+    */
 }

@@ -1,14 +1,16 @@
 package it.develhope.shoppyz.repository;
 
+import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface ProductRepository {
-    public Product getProduct(int id);
-    public void postProduct(Product product);
-    public void updateProduct(int id, Product product);
-    public void deleteProduct(int id);
+@Repository
+public interface ProductRepository extends JpaRepository<Account,Integer> {
 
-    public List<Product> getProduct();
+
+
 }

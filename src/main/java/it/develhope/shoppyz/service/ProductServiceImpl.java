@@ -2,12 +2,11 @@ package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.repository.ProductRepository;
-import it.develhope.shoppyz.repository.ProductRepositoryImpl;
 
 import java.util.List;
 
 public  class ProductServiceImpl {
-
+/*
     ProductRepository productRepository= new ProductRepositoryImpl();
 
     public static void findById(int productId) {
@@ -20,6 +19,7 @@ public  class ProductServiceImpl {
           return productRepository.getProduct(id);
       }
   */
+    /*
     public void postProduct(Product product){
         productRepository.postProduct(product);
     }
@@ -36,4 +36,5 @@ public  class ProductServiceImpl {
         List<Product> productList = productRepository.getProduct();
         return productList;
     }
+    */
 }

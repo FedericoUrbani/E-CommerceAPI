@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Account;
-import org.jetbrains.annotations.NotNull;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

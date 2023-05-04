@@ -25,12 +25,9 @@ public class Cart {
     @JoinColumn(name="User_id")
     private Account account;
 
-    @ManyToOne
-    @JoinColumn(name="Product_id")
+    /*@ManyToOne
+    @JoinColumn(name="Product_id")*/
     private Product product;
-
-
-
 
 
 
@@ -72,44 +69,19 @@ public class Cart {
         this.paymentMethod = paymentMethod;
     }
 
-    public void addProduct(Product product, int quantity) {
-        if (!productList.contains(product)) {
-            productList.add(product);
-            quantities.add(quantity);
-        } else {
-            int index = productList.indexOf(product);
-            quantities.set(index, quantities.get(index) + quantity);
-        }
-    }
 
-    public void printItems() {
-        System.out.println("Products in the cart: ");
-        for (int i = 0; i < productList.size(); i++) {
-            System.out.println(productList.get(i).getId() + " - " + productList.get(i).getPrice() + " x " + quantities.get(i));
-        }
-    }
-
-    public double totalPrice() {
-        double totalPrice = 0;
-        for (int i = 0; i < productList.size(); i++) {
-            totalPrice += productList.get(i).getPrice() * quantities.get(i);
-        }
-        return totalPrice;
-    }
-
-    public void removedProduct(Product product, int quantity){
-        int index = productList.indexOf(product);
-        if(index != -1){
-            int currentQuantity = quantities.get(index);
-            if(currentQuantity > quantity){
-                quantities.set(index, currentQuantity - quantity);
-            } else {
-                productList.remove(index);
-                quantities.remove(index);
+    public int getProductId(int productId) {
+        for (Product product : productList) {
+            if (product.getId()==productId) {
+                return product.getId();
             }
-            System.out.println(quantity + " " + product.getId() + " removed from cart.");
-        }else {
-            System.out.println(product.getId() + " not found in cart");
         }
+        return Integer.parseInt(null);
     }
+
+    public void addProduct(Product product) {
+        productList.add(product);
+    }
+
+
 }

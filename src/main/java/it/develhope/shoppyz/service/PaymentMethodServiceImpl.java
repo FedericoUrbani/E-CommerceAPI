@@ -2,12 +2,11 @@ package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.entity.PaymentMethod;
 import it.develhope.shoppyz.repository.PaymentMethodRepository;
-import it.develhope.shoppyz.repository.PaymentMethodRepositorylmpl;
 
 import java.sql.SQLException;
 
-public class PaymentMethodServiceImpl implements PaymentMethodService {
-
+public class PaymentMethodServiceImpl  {
+/*
     PaymentMethodRepository paymentMethodRepository = new PaymentMethodRepositorylmpl();
 
     public PaymentMethodServiceImpl(PaymentMethodRepository paymentMethodRepository) {
@@ -27,5 +26,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
     public void deletePm(int idPayment) throws SQLException {
         paymentMethodRepository.deletePm(idPayment);
     }
+
+ */
 }
 

@@ -3,6 +3,7 @@ package it.develhope.shoppyz.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
