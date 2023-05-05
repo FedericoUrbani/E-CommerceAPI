@@ -12,4 +12,5 @@ public interface AccountService {
     public void saveAccount(Account account);
     void updateAccount(Account account);
     public List<Account> getAccountList();
+
 }

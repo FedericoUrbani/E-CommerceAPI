@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/newdb
+    url: jdbc:mysql://localhost:3306/provacrud
     username: root
     password: root
   jpa:

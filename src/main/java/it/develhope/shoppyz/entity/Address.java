@@ -2,18 +2,17 @@ package it.develhope.shoppyz.entity;
 
 import jakarta.persistence.*;
 
-@Entity
+@Embeddable
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int id;
-    @Column(nullable = false)
+
     private String street;
-    @Column(nullable = false)
+
     private String city;
-    @Column(nullable = false)
+
     private String state;
-    @Column(nullable = false)
+
     private String postalCode;
 
     public Address(){}
