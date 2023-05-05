@@ -3,7 +3,6 @@ package it.develhope.shoppyz.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Account {
@@ -14,20 +13,30 @@ public class Account {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "account_addresses", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "addresses_account_fk"))
-    private Map<Integer,Address> addresses;
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name = "street")),
+            @AttributeOverride(name = "city", column = @Column(name = "city")),
+            @AttributeOverride(name = "state", column = @Column(name = "state")),
+            @AttributeOverride(name = "postalCode", column = @Column(name = "PostalCode")),
+    })
+    private List<Address> addresses;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false)
-    private String enabled;
+    private byte enabled;
     @Column(nullable = false, unique = true)
     private String email;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "account_paymentmethods", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "paymentmethods_account_fk"))
-    private Map<Integer,PaymentMethod> paymentMethods;
-
-    public Account(Integer id, String name, String surname, Map<Integer,Address> addresses, String phoneNumber, String enabled, String email, Map<Integer,PaymentMethod> paymentMethods) {
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "account_payments", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "payment_account_fk"))
+    @AttributeOverrides({
+            @AttributeOverride(name = "type", column = @Column(name = "card_type")),
+            @AttributeOverride(name = "paymentInformation", column = @Column(name = "payment_info")),
+    })
+    private List<PaymentMethod> paymentMethods;
+    public Account(){}
+    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, List<PaymentMethod> paymentMethods) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -37,9 +46,16 @@ public class Account {
         this.email = email;
         this.paymentMethods = paymentMethods;
     }
+    public Account( String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, List<PaymentMethod> paymentMethods) {
 
-    public Account(){}
-
+        this.name = name;
+        this.surname = surname;
+        this.addresses = addresses;
+        this.phoneNumber = phoneNumber;
+        this.enabled = enabled;
+        this.email = email;
+        this.paymentMethods = paymentMethods;
+    }
     public Integer getId() {
         return id;
     }
@@ -64,11 +80,11 @@ public class Account {
         this.surname = surname;
     }
 
-    public Map<Integer,Address> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(Map<Integer,Address> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 
@@ -80,11 +96,11 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEnabled() {
+    public byte getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(String enabled) {
+    public void setEnabled(byte enabled) {
         this.enabled = enabled;
     }
 
@@ -96,11 +112,11 @@ public class Account {
         this.email = email;
     }
 
-    public Map<Integer,PaymentMethod> getPaymentMethods() {
+    public List<PaymentMethod> getPaymentMethods() {
         return paymentMethods;
     }
 
-    public void setPaymentMethods(Map<Integer,PaymentMethod> paymentMethods) {
-        this.paymentMethods =  paymentMethods;
+    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
+        this.paymentMethods = paymentMethods;
     }
 }
