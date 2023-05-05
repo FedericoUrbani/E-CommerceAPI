@@ -13,26 +13,29 @@ public class Account {
     private String name;
     @Column(nullable = false)
     private String surname;
-
+    @Embedded
+    private List<String> addresses;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false)
     private String enabled;
     @Column(nullable = false, unique = true)
     private String email;
+    @Embedded
+    private List<PaymentMethod> paymentMethods;
 
-    public Account(Integer id, String name, String surname, String phoneNumber, String enabled, String email/*, List<PaymentMethod> savedPaymentMethods*/) {
+    public Account(Integer id, String name, String surname, List<String> addresses, String phoneNumber, String enabled, String email, List<PaymentMethod> paymentMethods) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-
+        this.addresses = addresses;
         this.phoneNumber = phoneNumber;
         this.enabled = enabled;
         this.email = email;
-
+        this.paymentMethods = paymentMethods;
     }
 
-    public Account (){}
+    public Account(){}
 
     public Integer getId() {
         return id;
@@ -58,6 +61,13 @@ public class Account {
         this.surname = surname;
     }
 
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -82,14 +92,12 @@ public class Account {
     public void setEmail(String email) {
         this.email = email;
     }
-/*
-    public List<PaymentMethod> getSavedPaymentMethods() {
-        return savedPaymentMethods;
+
+    public List<PaymentMethod> getPaymentMethods() {
+        return paymentMethods;
     }
 
-    public void setSavedPaymentMethods(List<PaymentMethod> savedPaymentMethods) {
-        this.savedPaymentMethods = savedPaymentMethods;
+    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
+        this.paymentMethods = paymentMethods;
     }
-    */
-
 }
