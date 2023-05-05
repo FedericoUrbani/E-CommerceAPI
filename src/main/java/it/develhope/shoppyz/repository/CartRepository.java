@@ -1,8 +1,6 @@
 package it.develhope.shoppyz.repository;
 
 import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

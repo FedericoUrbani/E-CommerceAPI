@@ -3,6 +3,7 @@ package it.develhope.shoppyz.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Account {
@@ -13,18 +14,20 @@ public class Account {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @Embedded
-    private List<String> addresses;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "account_addresses", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "addresses_account_fk"))
+    private Map<Integer,Address> addresses;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
     @Column(nullable = false)
     private String enabled;
     @Column(nullable = false, unique = true)
     private String email;
-    @Embedded
-    private List<PaymentMethod> paymentMethods;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "account_paymentmethods", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "paymentmethods_account_fk"))
+    private Map<Integer,PaymentMethod> paymentMethods;
 
-    public Account(Integer id, String name, String surname, List<String> addresses, String phoneNumber, String enabled, String email, List<PaymentMethod> paymentMethods) {
+    public Account(Integer id, String name, String surname, Map<Integer,Address> addresses, String phoneNumber, String enabled, String email, Map<Integer,PaymentMethod> paymentMethods) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -61,11 +64,11 @@ public class Account {
         this.surname = surname;
     }
 
-    public List<String> getAddresses() {
+    public Map<Integer,Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<String> addresses) {
+    public void setAddresses(Map<Integer,Address> addresses) {
         this.addresses = addresses;
     }
 
@@ -93,11 +96,11 @@ public class Account {
         this.email = email;
     }
 
-    public List<PaymentMethod> getPaymentMethods() {
+    public Map<Integer,PaymentMethod> getPaymentMethods() {
         return paymentMethods;
     }
 
-    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
-        this.paymentMethods = paymentMethods;
+    public void setPaymentMethods(Map<Integer,PaymentMethod> paymentMethods) {
+        this.paymentMethods =  paymentMethods;
     }
 }
