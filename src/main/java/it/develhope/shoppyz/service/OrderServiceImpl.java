@@ -1,56 +1,42 @@
 package it.develhope.shoppyz.service;
 
+import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Order;
-
+import it.develhope.shoppyz.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
-public class OrderServiceImpl {
+@Service
+public class OrderServiceImpl implements OrderService{
 
+    @Autowired
+    OrderRepository orderRepository;
 
-   // OrderRepositoryImpl orderRepository=new OrderRepositoryImpl();
-/*
-    /**
-     * @return Get the order with the id of:
-     */
-   /*
-    @Override
-    public Order getOrder(int id) {
+    public void postOrder(Order order, Account id) {
+        orderRepository.saveAndFlush(order);
+    }
 
-       return orderRepository.getOrder(id);
-    }
-    /**
-     * @return delete the order with the id of:
-     */
-   /*
     @Override
-    public void deleteOrder(int id) {
-        orderRepository.deleteOrder(id);
+    public Optional<Order> getOrder(Integer id) {
+        return orderRepository.findById(id);
     }
-    /**
-     * @return save the order :
-     */
-   /* @Override
-    public void saveOrder(Order order, int userId) {
-        orderRepository.saveOrder(order, userId);
-    }
-    /**
-     * @return update the order with the id of with the order:
-     */
-   /*
+
     @Override
-    public void updateOrder(int id, Order order) {
-        orderRepository.updateOrder(id,order);
+    public void deleteOrder(Order order) {
+        orderRepository.delete(order);
     }
-    /**
-     * @return Get the list of all orders:
-     */
-   /*
-    @Override
+
+    public void updateOrder(Order order) {
+        orderRepository.saveAndFlush(order);
+    }
+
     public List<Order> getOrders() {
-        return orderRepository.getOrders();
+        return orderRepository.findAll();
     }
 
-    */
+
 }
