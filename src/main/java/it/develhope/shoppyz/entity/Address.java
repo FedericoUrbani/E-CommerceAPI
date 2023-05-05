@@ -5,33 +5,29 @@ import jakarta.persistence.*;
 @Embeddable
 public class Address {
 
-    private int id;
 
+    @Column
     private String street;
-
+    @Column
     private String city;
-
+    @Column
     private String state;
-
+    @Column
     private String postalCode;
 
     public Address(){}
 
-    public Address(Integer id, String street, String city, String state, String postalCode) {
-        this.id = id;
+    public Address( String street, String city, String state, String postalCode) {
+
         this.street = street;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+
+
 
     public String getStreet() {
         return street;

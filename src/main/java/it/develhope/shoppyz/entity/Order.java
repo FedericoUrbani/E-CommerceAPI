@@ -2,6 +2,7 @@ package it.develhope.shoppyz.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 
 
 @Entity
@@ -16,6 +17,9 @@ public class Order {
 
     @Column
     private byte isgift;
+
+    @Column(name = "Date")
+    private Date createDate;
 
     public Order(){
 
