@@ -28,6 +28,8 @@ public class Account {
     private byte enabled;
     @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
+    private String password;
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "account_payments", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "payment_account_fk"))
     @AttributeOverrides({
@@ -36,7 +38,8 @@ public class Account {
     })
     private List<PaymentMethod> paymentMethods;
     public Account(){}
-    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, List<PaymentMethod> paymentMethods) {
+
+    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -44,18 +47,10 @@ public class Account {
         this.phoneNumber = phoneNumber;
         this.enabled = enabled;
         this.email = email;
+        this.password = password;
         this.paymentMethods = paymentMethods;
     }
-    public Account( String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, List<PaymentMethod> paymentMethods) {
 
-        this.name = name;
-        this.surname = surname;
-        this.addresses = addresses;
-        this.phoneNumber = phoneNumber;
-        this.enabled = enabled;
-        this.email = email;
-        this.paymentMethods = paymentMethods;
-    }
     public Integer getId() {
         return id;
     }
@@ -110,6 +105,14 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<PaymentMethod> getPaymentMethods() {

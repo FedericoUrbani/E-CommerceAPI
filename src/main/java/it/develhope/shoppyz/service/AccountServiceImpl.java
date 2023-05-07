@@ -100,6 +100,7 @@ public class AccountServiceImpl implements AccountService {
             Randomaccount.setSurname(randomStringGenerator(8));
             Randomaccount.setEnabled((byte) 1);
             Randomaccount.setPhoneNumber(randomStringGenerator(13));
+            Randomaccount.setPassword(randomStringGenerator(12));
             accountRepository.save(Randomaccount);
             accountList.add(Randomaccount);
 
