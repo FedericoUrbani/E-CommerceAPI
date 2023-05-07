@@ -3,10 +3,11 @@ import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Order;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderService {
 
-        public Order getOrder(Integer id);
+        public Optional<Order> getOrder(Integer id);
         public void deleteOrder(Order order);
         public void postOrder(Order order, Account id);
         public void updateOrder(Order order);
