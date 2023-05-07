@@ -13,7 +13,7 @@ public class WelcomeController {
     /* Mapping for welcome page */
     @GetMapping("/Shoppyz")
     public String sayHello (Model model){
-        model.addAttribute("theDate", new java.util.Date());
-        return "welcomePage";
+        /* prima pagina da visualizzare */
+        return "index";
     }
 }
