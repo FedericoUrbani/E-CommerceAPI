@@ -14,7 +14,12 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
 
      Optional<Account> findById(Integer id);
 
+     @Override
+     void deleteById(Integer integer);
+
      List<Account> findAll();
+
+
 
 
 }
