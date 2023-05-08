@@ -17,6 +17,8 @@ public class WelcomeController {
     @GetMapping("")
     public String sayHello (Model model){
         /* prima pagina da visualizzare */
+        model.addAttribute("date", new java.util.Date());
         return "index";
+
     }
 }

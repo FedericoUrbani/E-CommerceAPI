@@ -25,10 +25,11 @@ public class Order {
 
     }
 
-    public Order(int id, String trackingNumber, byte isgift) {
+    public Order(int id, String trackingNumber, byte isgift, Date createDate) {
         this.id = id;
         this.trackingNumber = trackingNumber;
         this.isgift = isgift;
+        this.createDate = createDate;
     }
 
     public int getId() {
@@ -47,12 +48,19 @@ public class Order {
         this.trackingNumber = trackingNumber;
     }
 
-
-    public byte isIsgift() {
+    public byte getIsgift() {
         return isgift;
     }
 
     public void setIsgift(byte isgift) {
         this.isgift = isgift;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }
