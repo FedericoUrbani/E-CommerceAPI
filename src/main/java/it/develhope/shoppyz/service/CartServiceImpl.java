@@ -1,72 +1,61 @@
 package it.develhope.shoppyz.service;
 
 import it.develhope.shoppyz.DTO.Cart.CART_DTO_ADD;
+import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Product;
 import it.develhope.shoppyz.entity.Cart;
 import it.develhope.shoppyz.repository.CartRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class CartServiceImpl implements CartService {
+
+    @Autowired
     CartRepository cartRepository ;
-/*
-    public Cart getToCart(Product product){
-        return cartRepository.getToCart(product);
-    }
-
-    public void postToCart(Cart cart){
-        cartRepository.postToCart(cart);
-    }
-
-    public void updateToCart(Product product){
-        cartRepository.updateToCart(product);
-    }
-
-    public void deleteToCart(Product product){
-        cartRepository.deleteToCart(product);
-    }
-    */
 
 
     @Override
-    public void addProduct(Product product, int quantity) {
+    public List<Cart> findAllCart() {
+        return cartRepository.findAll();
+    }
+
+    @Override
+    public Optional<Cart> getCart(int id) {
+        return cartRepository.findById(id);
+    }
+
+    @Override
+    public void updateCart(Cart cart) {
+        cartRepository.saveAndFlush(cart);
+    }
+
+    @Override
+    public void addProductToCart(Product product, Account account, int quantity) {
 
     }
 
     @Override
-    public void printItems() {
-
+    public Cart findById(int id) {
+        return  cartRepository.findById(id).orElse(null);
     }
 
     @Override
-    public double totalPrice() {
-        return 0;
+    public void removeCart(Integer id) {
+        cartRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveCart(Cart cart) {
+        cartRepository.saveAndFlush(cart);
     }
 
     @Override
     public void removedProduct(Product product, int quantity) {
 
     }
-
-    @Override
-    public void addToCart(CART_DTO_ADD cartDtoAdd) {
-
-        //Validare id prodotto
-
-       // ProductServiceImpl.findById(cartDtoAdd.getProduct_id());
-
-    }
-
-    @Override
-    public Cart getCartByUserId(int userId) {
-        return null;
-    }
-
-    @Override
-    public void saveCart(Cart cart) {
-       // Cart cartSaved = cartRepository.save(cart);
-    }
-
-
 }
