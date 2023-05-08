@@ -4,10 +4,11 @@ package it.develhope.shoppyz.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 
-@Controller
+@RestController
 public class WelcomeController {
 
     /* Mapping for welcome page */

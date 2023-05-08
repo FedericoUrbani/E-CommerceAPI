@@ -7,11 +7,9 @@ import it.develhope.shoppyz.entity.PaymentType;
 import it.develhope.shoppyz.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -47,7 +45,6 @@ public class AccountServiceImpl implements AccountService {
     public void updateAccount(Account account) {
         accountRepository.save(account);
     }
-
     /**
      * @return returns the list of accounts
      */
@@ -56,6 +53,8 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAccountList() {
         return accountRepository.findAll();
     }
+
+    public void deleteById(Integer id){accountRepository.deleteById(id);}
 
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
