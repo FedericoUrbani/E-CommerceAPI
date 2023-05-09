@@ -1,15 +1,10 @@
 package it.develhope.shoppyz.Controller;
 
-import it.develhope.shoppyz.DTO.Account.Account_DTO;
-import it.develhope.shoppyz.DTO.Cart.CART_DTO_ADD;
 import it.develhope.shoppyz.entity.Account;
 import it.develhope.shoppyz.entity.Cart;
 import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.repository.CartRepository;
-import it.develhope.shoppyz.service.CartService;
 import it.develhope.shoppyz.service.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

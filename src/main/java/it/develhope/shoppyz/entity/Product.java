@@ -13,30 +13,43 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
+    @OneToOne()
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account buyerAccount;
+
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String brand;
 
+    @Column(name = "quantity")
+    private int quantity;
+
     @Column
     private String description;
 
     @Column(nullable = false)
     private double price;
-
-    @OneToMany(mappedBy = "product", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-    private List<CartItem> products = new ArrayList<>();
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    private Order order_id;
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    private Cart cart;
 
     public Product() {
     }
 
-    public Product(int id, String name, String brand, String description, double price) {
+    public Product(int id, Account buyerAccount, String name, String brand, int quantity, String description, double price, Order order_id, Cart cart) {
         this.id = id;
+        this.buyerAccount = buyerAccount;
         this.name = name;
         this.brand = brand;
+        this.quantity = quantity;
         this.description = description;
         this.price = price;
+        this.order_id = order_id;
+        this.cart = cart;
     }
 
     public int getId() {
@@ -45,6 +58,14 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Account getBuyerAccount() {
+        return buyerAccount;
+    }
+
+    public void setBuyerAccount(Account buyerAccount) {
+        this.buyerAccount = buyerAccount;
     }
 
     public String getName() {
@@ -63,6 +84,14 @@ public class Product {
         this.brand = brand;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -77,6 +106,22 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Order getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(Order order_id) {
+        this.order_id = order_id;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
 

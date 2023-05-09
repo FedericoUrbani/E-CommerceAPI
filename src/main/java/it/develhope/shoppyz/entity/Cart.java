@@ -3,7 +3,6 @@ package it.develhope.shoppyz.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -16,28 +15,23 @@ public class Cart {
     private int id;
 
     @OneToOne()
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
-    @OneToMany(mappedBy = "cart", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
-    private List<CartItem> cartItems = new ArrayList<>();
+    @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private List<Product> productsInCart = new ArrayList<>();
 
+    @Column
+    private byte isgift;
 
-    @Column(name = "Date")
-    private Date createDate;
+    public Cart() {
+    }
 
-    @Column(name = "quantity")
-    private int quantity;
-
-    public Cart(){};
-
-
-    public Cart(int id, Account account, Date createDate, int quantity) {
+    public Cart(int id, Account account, List<Product> productsInCart, byte isgift) {
         this.id = id;
         this.account = account;
-
-        this.createDate = createDate;
-        this.quantity = quantity;
+        this.productsInCart = productsInCart;
+        this.isgift = isgift;
     }
 
     public int getId() {
@@ -56,19 +50,20 @@ public class Cart {
         this.account = account;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public List<Product> getProductsInCart() {
+        return productsInCart;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setProductsInCart(List<Product> productsInCart) {
+        this.productsInCart = productsInCart;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public byte getIsgift() {
+        return isgift;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setIsgift(byte isgift) {
+        this.isgift = isgift;
     }
+
 }

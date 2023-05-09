@@ -1,10 +1,9 @@
 package it.develhope.shoppyz.service;
 
-import it.develhope.shoppyz.DTO.Cart.CART_DTO_ADD;
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.entity.Cart;
+import it.develhope.shoppyz.entity.*;
 import it.develhope.shoppyz.repository.CartRepository;
+import it.develhope.shoppyz.repository.OrderRepository;
+import it.develhope.shoppyz.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,11 @@ import java.util.Optional;
 public class CartServiceImpl implements CartService {
 
     @Autowired
+    ProductRepository productRepository;
+    @Autowired
     CartRepository cartRepository ;
+    @Autowired
+    OrderRepository orderRepository;
 
 
     @Override
@@ -35,7 +38,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addProductToCart(Product product, Account account, int quantity) {
+    public void addProductToCart(Product product, Account account, int qty) {
+
+    }
+
+    @Override
+    public void addProductToCart(Cart cart, Product product, int quantity) {
+
+        Cart cartProv= cart;
+        product.setQuantity(quantity);
+        cartProv.getProductsInCart().add(product);
 
     }
 
@@ -58,4 +70,51 @@ public class CartServiceImpl implements CartService {
     public void removedProduct(Product product, int quantity) {
 
     }
+
+    @Override
+    public List<Product> removedProduct(List<Product> list, int id_prod) {
+
+        //logica per individuare il prodotto da eliminare (key)
+        //rimuovi l'elemento della lista ritornandola
+
+
+        return null; //ritorni la lista
+    }
+
+
+    public void makeOrder(Cart cart){
+        Order provOrd= new Order();
+        provOrd.setCreateDate(new java.util.Date());
+        provOrd.setIsgift(cart.getIsgift());
+        provOrd.setTrackingNumber(randomTrackingNumberGenerator());
+        provOrd.setBuyerAccount(cart.getAccount());
+        provOrd.setProductsList(cart.getProductsInCart());
+        orderRepository.saveAndFlush(provOrd);
+    }
+
+    /** logica per autogenerazione trackingnumb */
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public String randomTrackingNumberGenerator(){
+
+        StringBuilder buffer = new StringBuilder(12);
+        buffer.append("IT");
+        for(int i = 0; i< 10; i++){
+            int r= getRandomNumber(1,2);
+            if(r==1)
+            buffer.append((char) getRandomNumber(48,57));
+            if(r==2)
+            buffer.append((char) getRandomNumber(65,90));
+        }
+        String returnedString= buffer.toString();
+        return returnedString;
+    }
+
+
+
+
+
 }

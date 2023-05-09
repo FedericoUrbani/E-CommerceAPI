@@ -1,10 +1,8 @@
 package it.develhope.shoppyz.service;
 
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Address;
-import it.develhope.shoppyz.entity.PaymentMethod;
-import it.develhope.shoppyz.entity.PaymentType;
+import it.develhope.shoppyz.entity.*;
 import it.develhope.shoppyz.repository.AccountRepository;
+import it.develhope.shoppyz.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -15,6 +13,9 @@ import java.util.Optional;
 public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
 
 
@@ -109,7 +110,11 @@ public class AccountServiceImpl implements AccountService {
         return accountList;
     }
 
-
+    public void putProduct (Product product){
+        Product prov= new Product();
+        //prov.set
+        productRepository.saveAndFlush(product);
+    }
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
