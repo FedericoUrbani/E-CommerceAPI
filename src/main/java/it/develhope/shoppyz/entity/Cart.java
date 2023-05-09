@@ -14,11 +14,14 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-/*
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
-*/
+
+    @OneToMany(mappedBy = "cart", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
+
 
     @Column(name = "Date")
     private Date createDate;
@@ -26,23 +29,46 @@ public class Cart {
     @Column(name = "quantity")
     private int quantity;
 
+    public Cart(){};
+
+
+    public Cart(int id, Account account, Date createDate, int quantity) {
+        this.id = id;
+        this.account = account;
+
+        this.createDate = createDate;
+        this.quantity = quantity;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Date getCreateDate() {
         return createDate;
     }
 
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     public int getQuantity() {
         return quantity;
     }
 
-
-    public Cart(int id, Date createDate, int quantity) {
-        this.id = id;
-        this.createDate = createDate;
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }

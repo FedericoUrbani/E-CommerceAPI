@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table
 public class Product {
@@ -22,6 +24,9 @@ public class Product {
 
     @Column(nullable = false)
     private double price;
+
+    @OneToMany(mappedBy = "product", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+    private List<CartItem> products = new ArrayList<>();
 
     public Product() {
     }
