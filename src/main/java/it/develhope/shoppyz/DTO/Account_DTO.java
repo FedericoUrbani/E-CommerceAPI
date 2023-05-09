@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.DTO.Account;
+package it.develhope.shoppyz.DTO;
 
 
 public class Account_DTO {

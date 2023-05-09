@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.DTO.Cart;
+package it.develhope.shoppyz.DTO;
 
 
 public class CART_DTO_ADD {

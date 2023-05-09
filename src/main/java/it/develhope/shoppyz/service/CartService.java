@@ -19,6 +19,8 @@ public interface CartService {
 
     public void addProductToCart(Product product, Account account, int qty);
 
+    void addProductToCart(Cart cart, Product product, int quantity);
+
     public Cart findById(int id);
 
     public void removeCart(Integer id);
@@ -26,5 +28,8 @@ public interface CartService {
     public void saveCart(Cart cart);
 
     public void removedProduct(Product product, int quantity);
+
+
+    List<Product> removedProduct(List<Product> list, int id_prod);
 }
 
