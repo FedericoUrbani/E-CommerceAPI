@@ -17,7 +17,7 @@ public interface CartService {
 
     public void updateCart(Cart cart);
 
-    public void addProductToCart(Product product, Account account, int qty);
+
 
     void addProductToCart(Cart cart, Product product, int quantity);
 
@@ -27,7 +27,7 @@ public interface CartService {
 
     public void saveCart(Cart cart);
 
-    public void removedProduct(Product product, int quantity);
+
 
 
     List<Product> removedProduct(List<Product> list, int id_prod);

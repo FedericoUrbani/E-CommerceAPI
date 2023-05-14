@@ -37,10 +37,7 @@ public class CartServiceImpl implements CartService {
         cartRepository.saveAndFlush(cart);
     }
 
-    @Override
-    public void addProductToCart(Product product, Account account, int qty) {
 
-    }
 
     @Override
     public void addProductToCart(Cart cart, Product product, int quantity) {
@@ -66,19 +63,28 @@ public class CartServiceImpl implements CartService {
         cartRepository.saveAndFlush(cart);
     }
 
-    @Override
-    public void removedProduct(Product product, int quantity) {
 
-    }
 
     @Override
     public List<Product> removedProduct(List<Product> list, int id_prod) {
 
-        //logica per individuare il prodotto da eliminare (key)
-        //rimuovi l'elemento della lista ritornandola
 
+        // Cerca il prodotto con l'id specificato nella lista
+        Product prodToRemove = null;
+        for (Product prod : list) {
+            if (prod.getId() == id_prod) {
+                prodToRemove = prod;
+                break;
+            }
+        }
 
-        return null; //ritorni la lista
+        // Rimuovi il prodotto dalla lista, se presente
+        if (prodToRemove != null) {
+            list.remove(prodToRemove);
+        }
+
+        // Ritorna la lista aggiornata
+        return list;
     }
 
 
