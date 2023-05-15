@@ -1,9 +1,9 @@
 package it.develhope.shoppyz.Controller;
 
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Cart;
-import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.service.CartServiceImpl;
+import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.cart.Cart;
+import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.cart.CartServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

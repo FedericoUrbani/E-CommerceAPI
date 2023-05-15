@@ -1,10 +1,9 @@
-package it.develhope.shoppyz.repository;
+package it.develhope.shoppyz.product;
 
-import it.develhope.shoppyz.entity.Product;
+import it.develhope.shoppyz.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 

@@ -1,8 +1,7 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.account;
 
-import it.develhope.shoppyz.entity.*;
-import it.develhope.shoppyz.repository.AccountRepository;
-import it.develhope.shoppyz.repository.ProductRepository;
+import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public void saveAccount(Account account) {
-    accountRepository.save(account);
+    accountRepository.saveAndFlush(account);
     }
     /**
      * @return update the user with the id of.

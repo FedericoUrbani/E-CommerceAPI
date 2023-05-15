@@ -1,8 +1,6 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.order;
 
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Order;
-import it.develhope.shoppyz.repository.OrderRepository;
+import it.develhope.shoppyz.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OrderRepository orderRepository;

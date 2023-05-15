@@ -1,8 +1,8 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Cart;
-import it.develhope.shoppyz.entity.Product;
+import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.cart.Cart;
+import it.develhope.shoppyz.product.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

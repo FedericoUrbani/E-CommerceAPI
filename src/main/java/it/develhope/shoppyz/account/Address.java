@@ -1,4 +1,4 @@
-package it.develhope.shoppyz.entity;
+package it.develhope.shoppyz.account;
 
 import jakarta.persistence.*;
 

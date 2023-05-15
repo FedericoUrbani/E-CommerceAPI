@@ -1,6 +1,6 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.product;
 
-import it.develhope.shoppyz.entity.Product;
+import it.develhope.shoppyz.product.Product;
 
 import java.util.List;
 import java.util.Optional;

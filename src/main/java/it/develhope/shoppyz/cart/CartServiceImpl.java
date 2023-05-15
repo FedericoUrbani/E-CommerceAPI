@@ -1,9 +1,10 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.entity.*;
-import it.develhope.shoppyz.repository.CartRepository;
-import it.develhope.shoppyz.repository.OrderRepository;
-import it.develhope.shoppyz.repository.ProductRepository;
+import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.order.Order;
+import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.order.OrderRepository;
+import it.develhope.shoppyz.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

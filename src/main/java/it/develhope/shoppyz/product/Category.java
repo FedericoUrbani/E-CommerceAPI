@@ -1,10 +1,8 @@
-package it.develhope.shoppyz.entity;
-
-import jakarta.persistence.Embeddable;
+package it.develhope.shoppyz.product;
 
 import java.util.Random;
 
-@Embeddable
+
 public enum Category {
 
     Elettronica,

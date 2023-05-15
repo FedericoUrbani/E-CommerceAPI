@@ -1,15 +1,13 @@
-package it.develhope.shoppyz.service;
+package it.develhope.shoppyz.product;
 
-import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.lang.annotation.Documented;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public  class ProductServiceImpl implements ProductService{
+public  class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
