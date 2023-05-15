@@ -1,6 +1,5 @@
-package it.develhope.shoppyz.service;
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.entity.Order;
+package it.develhope.shoppyz.order;
+import it.develhope.shoppyz.account.Account;
 
 import java.util.List;
 import java.util.Optional;

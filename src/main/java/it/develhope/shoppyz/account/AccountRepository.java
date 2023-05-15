@@ -1,6 +1,6 @@
-package it.develhope.shoppyz.repository;
+package it.develhope.shoppyz.account;
 
-import it.develhope.shoppyz.entity.Account;
+import it.develhope.shoppyz.account.Account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

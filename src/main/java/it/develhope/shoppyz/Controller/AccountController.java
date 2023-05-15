@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.Controller;
 
-import it.develhope.shoppyz.entity.Account;
-import it.develhope.shoppyz.service.AccountServiceImpl;
+import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.account.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,16 +22,16 @@ public class AccountController {
         return accountServiceImpl.findAll();
     }
 
-    @DeleteMapping(value = "/deleteaccount/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void deletebyId(@PathVariable Integer id){
              accountServiceImpl.deleteById(id);
     }
 
-    @GetMapping(value = "/findaccountbyid/{id}")
+    @GetMapping(value = "/findbyid/{id}")
     public Optional<Account> getAccountById(@PathVariable Integer id){
        return accountServiceImpl.getAccount(id);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public void updateAccount(@PathVariable Integer id, @RequestBody Account account){
         account.setId(id);
         accountServiceImpl.updateAccount(account);

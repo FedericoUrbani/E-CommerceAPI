@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.Controller;
 
-import it.develhope.shoppyz.entity.Product;
-import it.develhope.shoppyz.repository.ProductRepository;
+import it.develhope.shoppyz.product.Product;
+import it.develhope.shoppyz.product.ProductRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

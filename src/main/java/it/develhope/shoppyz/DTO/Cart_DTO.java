@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.DTO;
 
 
-public class CART_DTO_ADD {
+public class Cart_DTO {
 
     private int id;
 
@@ -9,7 +9,7 @@ public class CART_DTO_ADD {
 
     private int quantity;
 
-    public CART_DTO_ADD() {
+    public Cart_DTO() {
     }
 
     public int getId() {

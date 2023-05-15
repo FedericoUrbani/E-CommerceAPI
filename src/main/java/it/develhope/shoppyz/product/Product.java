@@ -1,10 +1,8 @@
-package it.develhope.shoppyz.entity;
+package it.develhope.shoppyz.product;
 
-import java.util.ArrayList;
+import it.develhope.shoppyz.cart.Cart;
+import it.develhope.shoppyz.order.Order;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table
@@ -37,12 +35,13 @@ public class Product {
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     private Cart cart;
 
-    public Product() {
-    }
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
-    public Product(int id,/* Account buyerAccount,*/ String name, String brand, int quantity, String description, double price, Order order_id, Cart cart) {
+
+    public Product(int id, String name, String brand, int quantity, String description, double price, Order order_id, Cart cart, Category category) {
         this.id = id;
-    //    this.buyerAccount = buyerAccount;
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -50,6 +49,10 @@ public class Product {
         this.price = price;
         this.order_id = order_id;
         this.cart = cart;
+        this.category = category;
+    }
+
+    public Product() {
     }
 
     public int getId() {
@@ -59,15 +62,7 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-/*
-    public Account getBuyerAccount() {
-        return buyerAccount;
-    }
 
-    public void setBuyerAccount(Account buyerAccount) {
-        this.buyerAccount = buyerAccount;
-    }
-*/
     public String getName() {
         return name;
     }
@@ -122,6 +117,14 @@ public class Product {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
 

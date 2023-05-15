@@ -1,5 +1,7 @@
-package it.develhope.shoppyz.entity;
+package it.develhope.shoppyz.order;
 
+import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.product.Product;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
