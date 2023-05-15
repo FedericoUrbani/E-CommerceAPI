@@ -1,6 +1,7 @@
 package it.develhope.shoppyz.order;
 
 import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.product.Category;
 import it.develhope.shoppyz.product.Product;
 import jakarta.persistence.*;
 
@@ -32,17 +33,22 @@ public class Order {
     @Column(name = "Date")
     private Date createDate;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
     public Order(){
 
     }
 
-    public Order(int id, Account buyerAccount, String trackingNumber, List<Product> productsList, byte isgift, Date createDate) {
+    public Order(int id, Account buyerAccount, String trackingNumber, List<Product> productsList, byte isgift, Date createDate, OrderStatus orderStatus) {
         this.id = id;
         this.buyerAccount = buyerAccount;
         this.trackingNumber = trackingNumber;
         this.productsList = productsList;
         this.isgift = isgift;
         this.createDate = createDate;
+        this.orderStatus = orderStatus;
     }
 
     public int getId() {
@@ -91,5 +97,13 @@ public class Order {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
