@@ -37,6 +37,8 @@ public class Product {
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     private Cart cart;
 
+    @Enumerated(EnumType.ORDINAL)
+    private Category category;
     public Product() {
     }
 
