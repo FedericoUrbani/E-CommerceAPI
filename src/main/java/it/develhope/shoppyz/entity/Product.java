@@ -12,12 +12,12 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+/*
 
     @OneToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account buyerAccount;
-
+*/
     @Column(nullable = false)
     private String name;
 
@@ -40,9 +40,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, Account buyerAccount, String name, String brand, int quantity, String description, double price, Order order_id, Cart cart) {
+    public Product(int id,/* Account buyerAccount,*/ String name, String brand, int quantity, String description, double price, Order order_id, Cart cart) {
         this.id = id;
-        this.buyerAccount = buyerAccount;
+    //    this.buyerAccount = buyerAccount;
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -59,7 +59,7 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-
+/*
     public Account getBuyerAccount() {
         return buyerAccount;
     }
@@ -67,7 +67,7 @@ public class Product {
     public void setBuyerAccount(Account buyerAccount) {
         this.buyerAccount = buyerAccount;
     }
-
+*/
     public String getName() {
         return name;
     }
