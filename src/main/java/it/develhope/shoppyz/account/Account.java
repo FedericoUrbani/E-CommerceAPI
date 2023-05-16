@@ -1,5 +1,6 @@
 package it.develhope.shoppyz.account;
 
+import it.develhope.shoppyz.cart.Cart;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -39,10 +40,13 @@ public class Account {
     private List<PaymentMethod> paymentMethods;
 
 
+    @OneToOne(mappedBy = "account", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    private Cart cart;
+
 
     public Account(){}
 
-    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods) {
+    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods, Cart cart) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -52,6 +56,7 @@ public class Account {
         this.email = email;
         this.password = password;
         this.paymentMethods = paymentMethods;
+        this.cart = cart;
     }
 
     public Integer getId() {
@@ -124,5 +129,13 @@ public class Account {
 
     public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
         this.paymentMethods = paymentMethods;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

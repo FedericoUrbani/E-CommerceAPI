@@ -8,7 +8,7 @@ public interface OrderService {
 
         public Optional<Order> getOrder(Integer id);
         public void deleteOrder(Order order);
-        public void postOrder(Order order, Account id);
+        public void postOrder(Order order, Account account);
         public void updateOrder(Order order);
         public List<Order> getOrders();
     }

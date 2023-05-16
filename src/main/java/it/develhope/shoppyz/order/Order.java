@@ -1,13 +1,10 @@
 package it.develhope.shoppyz.order;
 
 import it.develhope.shoppyz.account.Account;
-import it.develhope.shoppyz.product.Category;
-import it.develhope.shoppyz.product.Product;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 
 @Entity
@@ -16,6 +13,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+
 
     @OneToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)

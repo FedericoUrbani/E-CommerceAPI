@@ -14,20 +14,27 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderRepository orderRepository;
 
-    public void postOrder(Order order, Account id) {
+    @Override
+    public void postOrder(Order order, Account account) {
+        /** l oggetto order viene cosi aggiornato con l account specificato utilizzanto setBuyerAccount **/
+        order.setBuyerAccount(account);
         orderRepository.saveAndFlush(order);
     }
+
 
     @Override
     public Optional<Order> getOrder(Integer id) {
         return orderRepository.findById(id);
     }
 
+
+
     @Override
     public void deleteOrder(Order order) {
         orderRepository.delete(order);
     }
 
+    @Override
     public void updateOrder(Order order) {
         orderRepository.saveAndFlush(order);
     }
