@@ -37,6 +37,9 @@ public class Account {
             @AttributeOverride(name = "paymentInformation", column = @Column(name = "payment_info")),
     })
     private List<PaymentMethod> paymentMethods;
+
+
+
     public Account(){}
 
     public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods) {
