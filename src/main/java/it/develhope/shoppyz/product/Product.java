@@ -1,7 +1,11 @@
 package it.develhope.shoppyz.product;
 
 
+import it.develhope.shoppyz.cart.Cart;
+import it.develhope.shoppyz.facts.Cart_product;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table
@@ -9,19 +13,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-/*
-    @OneToOne()
-    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    private Account buyerAccount;
-*/
+
+    @OneToMany(mappedBy = "product")
+    Set<Cart_product> registrations;
+
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
     private String brand;
-
-    @Column(name = "quantity")
-    private int quantity;
 
     @Column
     private String description;
@@ -35,11 +35,10 @@ public class Product {
     private Category category;
 
 
-    public Product(int id, String name, String brand, int quantity, String description, double price, Category category) {
+    public Product(int id, String name, String brand, String description, double price, Category category) {
         this.id = id;
         this.name = name;
         this.brand = brand;
-        this.quantity = quantity;
         this.description = description;
         this.price = price;
         this.category = category;
@@ -72,13 +71,6 @@ public class Product {
         this.brand = brand;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public String getDescription() {
         return description;
