@@ -21,6 +21,8 @@ public interface CartService {
 
     void addProductToCart(Cart cart, Product product, int quantity);
 
+    void addProductToCart(Cart cart, Product product);
+
     public Cart findById(int id);
 
     public void removeCart(Integer id);

@@ -1,7 +1,12 @@
 package it.develhope.shoppyz.product;
 
-import java.util.Random;
+import it.develhope.shoppyz.account.PaymentType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
+import java.util.Random;
 
 public enum Category {
 
@@ -10,12 +15,4 @@ public enum Category {
     Arredamento,
     Pesca,
     Sport;
-
-    private static final Random RNGState = new Random();
-
-    public static Category randomPayment() {
-        Category[] categoryTypes = values();
-        return categoryTypes[RNGState.nextInt(categoryTypes.length)];
-
-    }
 }

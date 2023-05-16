@@ -13,10 +13,7 @@ public class AccountController {
 
     @Autowired
     AccountServiceImpl accountServiceImpl;
-    @GetMapping("/randomacc")
-    public List<Account> createRandomAccounts (){
-        return accountServiceImpl.createBaseRandomAccounts(100);
-    }
+
     @GetMapping("/findall")
     public List<Account> findall(){
         return accountServiceImpl.findAll();
@@ -36,10 +33,10 @@ public class AccountController {
         account.setId(id);
         accountServiceImpl.updateAccount(account);
     }
-
     @PostMapping("/saveaccount")
     public void saveAccount(@RequestBody Account account){
         accountServiceImpl.saveAccount(account);
     }
+
 
 }

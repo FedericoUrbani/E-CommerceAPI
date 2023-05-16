@@ -46,9 +46,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public void addProductToCart(Cart cart, Product product, int quantity) {
 
+    }
+
+    @Override
+    public void addProductToCart(Cart cart, Product product) {
+
         Cart cartProv= cart;
-        product.setQuantity(quantity);
-        cartProv.getProductsInCart().add(product);
+
+
 
     }
 
@@ -82,7 +87,7 @@ public class CartServiceImpl implements CartService {
         return null; //ritorni la lista
     }
 
-
+/*
     public void makeOrder(Cart cart){
         Order provOrd= new Order();
         provOrd.setCreateDate(new java.util.Date());
@@ -92,7 +97,7 @@ public class CartServiceImpl implements CartService {
         provOrd.setProductsList(cart.getProductsInCart());
         orderRepository.saveAndFlush(provOrd);
     }
-
+*/
     /** logica per autogenerazione trackingnumb */
 
     public int getRandomNumber(int min, int max) {

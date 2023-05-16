@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("Shoppyz/product")
 public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
 
-    @PostMapping
-    public Product create(@RequestBody Product product){
+    @PostMapping("/add")
+    public Product addProduct(@RequestBody Product product){
         return productRepository.saveAndFlush(product);
     }
 
