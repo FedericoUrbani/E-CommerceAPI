@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 @Embeddable
 public class Address {
 
-
     @Column
     private String street;
     @Column

@@ -19,7 +19,4 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
 
      List<Account> findAll();
 
-
-
-
 }

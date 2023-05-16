@@ -24,9 +24,6 @@ public class Order {
     @Column
     private String trackingNumber;
 
-    @OneToMany(mappedBy = "order_id", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
-    private List<Product> productsList = new ArrayList<>();
-
     @Column
     private byte isgift;
 
@@ -41,11 +38,11 @@ public class Order {
 
     }
 
-    public Order(int id, Account buyerAccount, String trackingNumber, List<Product> productsList, byte isgift, Date createDate, OrderStatus orderStatus) {
+    public Order(int id, Account buyerAccount, String trackingNumber, byte isgift, Date createDate, OrderStatus orderStatus) {
         this.id = id;
         this.buyerAccount = buyerAccount;
         this.trackingNumber = trackingNumber;
-        this.productsList = productsList;
+
         this.isgift = isgift;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
@@ -75,13 +72,7 @@ public class Order {
         this.trackingNumber = trackingNumber;
     }
 
-    public List<Product> getProductsList() {
-        return productsList;
-    }
 
-    public void setProductsList(List<Product> productsList) {
-        this.productsList = productsList;
-    }
 
     public byte getIsgift() {
         return isgift;

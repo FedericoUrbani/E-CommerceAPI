@@ -1,7 +1,6 @@
 package it.develhope.shoppyz.account;
 
-import it.develhope.shoppyz.product.Product;
-import it.develhope.shoppyz.product.ProductRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -13,8 +12,7 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    @Autowired
-    ProductRepository productRepository;
+
 
 
 
@@ -57,63 +55,14 @@ public class AccountServiceImpl implements AccountService {
 
     public void deleteById(Integer id){accountRepository.deleteById(id);}
 
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    public String randomStringGenerator(int j){
-
-        int targetStringLength = j;
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-        for(int i=0;i<targetStringLength;i++){
-            buffer.append((char) getRandomNumber(97,122));
-        }
-        String returnedString= buffer.toString();
-        return returnedString;
-    }
-
-
-
-    public List<Account> createBaseRandomAccounts(int number){
-        List<Account> accountList = new ArrayList<>();
-        for (int i=0;i<number;i++){
-            List<Address> addressList= new ArrayList<>();
-            Address randomAddress=new Address(
-                    randomStringGenerator(4),
-                    randomStringGenerator(6),
-                    randomStringGenerator(5),
-                    randomStringGenerator(4));
-            addressList.add(randomAddress);
-
-            List<PaymentMethod> paymentList= new ArrayList<>();
-            PaymentMethod randomPaymentMethod=new PaymentMethod(
-                    PaymentType.randomPayment(),
-                    randomStringGenerator(3));
-            paymentList.add(randomPaymentMethod);
-
-
-            Account Randomaccount= new Account();
-            Randomaccount.setAddresses(addressList);
-            Randomaccount.setPaymentMethods(paymentList);
-            Randomaccount.setEmail(randomStringGenerator(8));
-            Randomaccount.setName(randomStringGenerator(8));
-            Randomaccount.setName(randomStringGenerator(8));
-            Randomaccount.setSurname(randomStringGenerator(8));
-            Randomaccount.setEnabled((byte) 1);
-            Randomaccount.setPhoneNumber(randomStringGenerator(13));
-            Randomaccount.setPassword(randomStringGenerator(12));
-            accountRepository.save(Randomaccount);
-            accountList.add(Randomaccount);
-
-        }
-        return accountList;
-    }
-
+    /*
     public void putProduct (Product product){
         Product prov= new Product();
         //prov.set
         productRepository.saveAndFlush(product);
     }
+    */
+
     public List<Account> findAll() {
         return accountRepository.findAll();
     }

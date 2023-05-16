@@ -20,8 +20,7 @@ public class Cart {
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
-    @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
-    private List<Product> productsInCart = new ArrayList<>();
+
 
     @Column
     private byte isgift;
@@ -32,7 +31,6 @@ public class Cart {
     public Cart(int id, Account account, List<Product> productsInCart, byte isgift) {
         this.id = id;
         this.account = account;
-        this.productsInCart = productsInCart;
         this.isgift = isgift;
     }
 
@@ -52,13 +50,6 @@ public class Cart {
         this.account = account;
     }
 
-    public List<Product> getProductsInCart() {
-        return productsInCart;
-    }
-
-    public void setProductsInCart(List<Product> productsInCart) {
-        this.productsInCart = productsInCart;
-    }
 
     public byte getIsgift() {
         return isgift;
