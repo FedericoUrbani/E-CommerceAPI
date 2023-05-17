@@ -17,17 +17,19 @@ public  class ProductServiceImpl implements ProductService {
         return productRepository.findById(id);
     }
 
-    public void postProduct(Product product){
+    public void createProduct(Product product){
         productRepository.saveAndFlush(product);
+
     }
 
     @Override
     public void updateProduct(Product product){
         productRepository.saveAndFlush(product);
+
     }
     @Override
-    public void deleteProduct(Product product){
-        productRepository.delete(product);
+    public void deleteProductById(Long id){
+        productRepository.deleteById(id);
     }
     @Override
     public List<Product> getProductList() {

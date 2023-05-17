@@ -2,6 +2,7 @@ package it.develhope.shoppyz.Controller;
 
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.product.ProductRepository;
+import it.develhope.shoppyz.product.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,35 +15,42 @@ import java.util.Optional;
 public class ProductController {
 
     @Autowired
-    ProductRepository productRepository;
+    ProductServiceImpl productServiceImpl;
 
-    @PostMapping("/add")
-    public Product addProduct(@RequestBody Product product){
-        return productRepository.saveAndFlush(product);
+    @GetMapping("/findall")
+    public List<Product> findAll(){
+        return productServiceImpl.getProductList();
     }
 
-    @GetMapping
-    public List<Product> getList(){
-        return productRepository.findAll();
+
+
+    @PostMapping("/addProduct")
+    public void addProduct(@RequestBody Product product){
+        System.out.println(product.toString());
+        productServiceImpl.createProduct(product);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Product> getSingle(@PathVariable Long id){
-        return productRepository.findById(id);
+
+
+    @GetMapping(value = "/findbyid/{id}")
+    public Optional<Product> findProductById(@PathVariable Long id){
+        return productServiceImpl.getProduct(id);
     }
 
-    @PutMapping("/{id}")
-    public Product update(@PathVariable Long id, @RequestBody Product product){
+
+
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Long id, @RequestBody Product product){
         product.setId(id);
-        return productRepository.saveAndFlush(product);
+        productServiceImpl.updateProduct(product);
     }
 
-   @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id, HttpServletResponse response){
-       if (productRepository.existsById(id)){
-           productRepository.deleteById(id);
-       }else{
-           response.setStatus(409);
-       }
+   @DeleteMapping(value = "/delete/{id}")
+    public void deleteProductbyID(@PathVariable Long id){
+       productServiceImpl.deleteProductById(id);
    }
+
+
+
+
 }
