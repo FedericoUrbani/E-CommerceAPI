@@ -21,13 +21,10 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.saveAndFlush(order);
     }
 
-
     @Override
     public Optional<Order> getOrder(Long id) {
         return orderRepository.findById(id);
     }
-
-
 
     @Override
     public void deleteOrder(Order order) {

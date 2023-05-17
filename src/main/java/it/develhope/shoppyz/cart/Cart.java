@@ -1,10 +1,7 @@
 package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.account.Account;
-import it.develhope.shoppyz.relationProdCart.Cart_Product;
 import jakarta.persistence.*;
 
-import java.util.Set;
 
 
 @Entity
@@ -19,7 +16,7 @@ public class Cart {
     @Column
     private byte isgift;
 
-    public Cart(Account account, Set<Cart_Product> registrations, byte isgift) {
+    public Cart( byte isgift) {
 
 
         this.isgift = isgift;

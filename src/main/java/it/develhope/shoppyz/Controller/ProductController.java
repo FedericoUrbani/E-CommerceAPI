@@ -28,14 +28,10 @@ public class ProductController {
         productServiceImpl.createProduct(product);
     }
 
-
-
     @GetMapping(value = "/findbyid/{id}")
     public Optional<Product> findProductById(@PathVariable Long id){
         return productServiceImpl.getProduct(id);
     }
-
-
 
     @PutMapping("/update/{id}")
     public void update(@PathVariable Long id, @RequestBody Product product){
