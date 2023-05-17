@@ -10,12 +10,12 @@ import java.util.Optional;
 
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account,Integer> {
+public interface AccountRepository extends JpaRepository<Account,Long> {
 
-     Optional<Account> findById(Integer id);
+     Optional<Account> findById(Long id);
 
      @Override
-     void deleteById(Integer integer);
+     void deleteById(Long id);
 
      List<Account> findAll();
 

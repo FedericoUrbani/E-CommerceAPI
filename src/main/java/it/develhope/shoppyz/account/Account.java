@@ -9,13 +9,14 @@ import java.util.List;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String surname;
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "account_addresses", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "addresses_account_fk"))
+    @CollectionTable(name = "account_addresses", joinColumns = @JoinColumn(name = "account_id"), foreignKey = @ForeignKey(name = "addresses_account_fk"))
     @AttributeOverrides({
             @AttributeOverride(name = "street", column = @Column(name = "street")),
             @AttributeOverride(name = "city", column = @Column(name = "city")),
@@ -32,7 +33,7 @@ public class Account {
     @Column(nullable = false)
     private String password;
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "account_payments", joinColumns = @JoinColumn(name="account_id"), foreignKey = @ForeignKey(name = "payment_account_fk"))
+    @CollectionTable(name = "account_payments", joinColumns = @JoinColumn(name = "account_id"), foreignKey = @ForeignKey(name = "payment_account_fk"))
     @AttributeOverrides({
             @AttributeOverride(name = "type", column = @Column(name = "card_type")),
             @AttributeOverride(name = "paymentInformation", column = @Column(name = "payment_info")),
@@ -40,13 +41,15 @@ public class Account {
     private List<PaymentMethod> paymentMethods;
 
 
-    @OneToOne(mappedBy = "account", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Cart cart;
+    public Account() {
 
+    }
 
-    public Account(){}
-
-    public Account(Integer id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods, Cart cart) {
+    public Account(Long id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods, Cart cart) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -59,11 +62,11 @@ public class Account {
         this.cart = cart;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -137,5 +140,22 @@ public class Account {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", addresses=" + addresses +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", enabled=" + enabled +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", paymentMethods=" + paymentMethods +
+                ", cart=" + cart +
+                '}';
     }
 }

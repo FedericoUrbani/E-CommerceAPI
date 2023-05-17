@@ -12,7 +12,7 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @OneToMany(mappedBy = "product")
     Set<Cart_product> registrations;
@@ -35,24 +35,20 @@ public class Product {
     private Category category;
 
 
-    public Product(int id, String name, String brand, String description, double price, Category category) {
-        this.id = id;
-        this.name = name;
-        this.brand = brand;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-    }
-
-    public Product() {
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Cart_product> getRegistrations() {
+        return registrations;
+    }
+
+    public void setRegistrations(Set<Cart_product> registrations) {
+        this.registrations = registrations;
     }
 
     public String getName() {
@@ -71,7 +67,6 @@ public class Product {
         this.brand = brand;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -87,7 +82,6 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     public Category getCategory() {
         return category;

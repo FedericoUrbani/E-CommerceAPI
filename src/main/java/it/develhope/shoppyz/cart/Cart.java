@@ -5,6 +5,7 @@ import it.develhope.shoppyz.account.Address;
 import it.develhope.shoppyz.facts.Cart_product;
 import it.develhope.shoppyz.product.Product;
 import jakarta.persistence.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +16,11 @@ import java.util.Set;
 @Table(name = "cart")
 public class Cart {
 
+
     @Id
-    @Column(name = "account_id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "account_id")
-    private Account account;
 
     @OneToMany(mappedBy = "cart")
     Set<Cart_product> registrations;
@@ -31,34 +28,24 @@ public class Cart {
     @Column
     private byte isgift;
 
-    public Cart(int id, Account account, List<Product> cartProductList, byte isgift) {
-        this.id = id;
-        this.account = account;
+    public Cart(Account account, Set<Cart_product> registrations, byte isgift) {
+
+
+        this.registrations = registrations;
         this.isgift = isgift;
     }
 
-    public Cart() {
+    public Cart (){}
+
+
+
+    public Set<Cart_product> getRegistrations() {
+        return registrations;
     }
 
-
-
-
-    public int getId() {
-        return id;
+    public void setRegistrations(Set<Cart_product> registrations) {
+        this.registrations = registrations;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
 
     public byte getIsgift() {
         return isgift;
@@ -67,5 +54,4 @@ public class Cart {
     public void setIsgift(byte isgift) {
         this.isgift = isgift;
     }
-
 }

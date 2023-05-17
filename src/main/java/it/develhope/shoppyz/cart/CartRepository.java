@@ -10,15 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Integer> {
+public interface CartRepository extends JpaRepository<Cart, Long> {
 
-   
-
-
-    Optional<Cart> findById(Integer id);
+    Optional<Cart> findById(Long id);
 
     @Override
-    void deleteById(Integer integer);
+    void deleteById(Long integer);
 
     List<Cart> findAll();
 

@@ -23,28 +23,24 @@ public class CartController {
     }
 
     @GetMapping(value = "/findCartbyid/{id}")
-    public Optional<Cart> getCartById(@PathVariable Integer id) {
+    public Optional<Cart> getCartById(@PathVariable Long id) {
         return cartServiceImpl.getCart(id);
     }
 
 
     @PutMapping("/{id}")
-    public void updateCart(@PathVariable Integer id, @RequestBody Cart cart) {
-        cart.setId(id);
+    public void updateCart(@PathVariable Long id, @RequestBody Cart cart) {
+
         cartServiceImpl.updateCart(cart);
     }
 
-    public void addProductToCart(Product product, Account account, int quantity) {
-
-    }
-
     @GetMapping(value = "/findCartById/{id}")
-    public Cart findById(@PathVariable Integer id) {
+    public Cart findById(@PathVariable Long id) {
         return cartServiceImpl.findById(id);
     }
 
     @DeleteMapping("/deletecart/{id}")
-    public void removeCartId(Integer id) {
+    public void removeCartId(Long id) {
         cartServiceImpl.removeCart(id);
     }
 

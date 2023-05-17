@@ -27,18 +27,18 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Product> getSingle(@PathVariable int id){
+    public Optional<Product> getSingle(@PathVariable Long id){
         return productRepository.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Product update(@PathVariable int id, @RequestBody Product product){
+    public Product update(@PathVariable Long id, @RequestBody Product product){
         product.setId(id);
         return productRepository.saveAndFlush(product);
     }
 
    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable int id, HttpServletResponse response){
+    public void deleteProduct(@PathVariable Long id, HttpServletResponse response){
        if (productRepository.existsById(id)){
            productRepository.deleteById(id);
        }else{

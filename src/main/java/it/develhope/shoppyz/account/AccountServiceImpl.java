@@ -25,7 +25,7 @@ public class AccountServiceImpl implements AccountService {
     /**
      * @return get the account:
      */
-    public Optional<Account> getAccount(Integer id) {
+    public Optional<Account> getAccount(Long id) {
         return accountRepository.findById(id);
     }
 
@@ -39,13 +39,10 @@ public class AccountServiceImpl implements AccountService {
     /**
      * @return save the account.
      */
+
     @Override
-    @Transactional
     public void saveAccount(Account account) {
-    accountRepository.saveAndFlush(account);
-        Cart cart = new Cart();
-        cart.setAccount(account);
-        cartRepository.save(cart);
+    accountRepository.save(account);
 
     }
     /**
@@ -59,20 +56,15 @@ public class AccountServiceImpl implements AccountService {
      * @return returns the list of accounts
      */
 
+
     @Override
     public List<Account> getAccountList() {
         return accountRepository.findAll();
     }
 
-    public void deleteById(Integer id){accountRepository.deleteById(id);}
+    public void deleteById(Long id){accountRepository.deleteById(id);}
 
-    /*
-    public void putProduct (Product product){
-        Product prov= new Product();
-        //prov.set
-        productRepository.saveAndFlush(product);
-    }
-    */
+
 
     public List<Account> findAll() {
         return accountRepository.findAll();
