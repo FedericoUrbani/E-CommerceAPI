@@ -1,13 +1,15 @@
 package it.develhope.shoppyz.cart;
 
+import it.develhope.shoppyz.relationProdCart.Cart_Product;
+import it.develhope.shoppyz.relationProdCart.Cart_ProductRepository;
 import it.develhope.shoppyz.product.Product;
-import it.develhope.shoppyz.order.OrderRepository;
 import it.develhope.shoppyz.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 
 @Service
@@ -18,7 +20,7 @@ public class CartServiceImpl implements CartService {
     @Autowired
     CartRepository cartRepository ;
     @Autowired
-    OrderRepository orderRepository;
+    Cart_ProductRepository cartProductRepository;
 
 
     @Override
@@ -44,6 +46,19 @@ public class CartServiceImpl implements CartService {
     @Override
     public void removeCart(Long id) {
         cartRepository.deleteById(id);
+    }
+
+    @Override
+    public Cart addProductToCart(Long accountid, Long productid) throws Exception {
+
+        Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));;
+        Product product= productRepository.getReferenceById(productid);
+        Cart_Product cartProduct= new Cart_Product();
+        cartProduct.setProduct(product);
+        cartProduct.setCart(cart);
+        cart.registrations.add(cartProduct);
+        cartProductRepository.save(cartProduct);
+        return cartRepository.save(cart);
     }
 
     @Override

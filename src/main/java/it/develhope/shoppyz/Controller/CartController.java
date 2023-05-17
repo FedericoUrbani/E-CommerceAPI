@@ -28,10 +28,9 @@ public class CartController {
     }
 
 
-    @PutMapping("/{id}")
-    public void updateCart(@PathVariable Long id, @RequestBody Cart cart) {
-
-        cartServiceImpl.updateCart(cart);
+    @PutMapping("{accountid}/{productid}")
+    public void addProductInCart(@PathVariable Long accountid, @PathVariable Long productid) throws Exception {
+        cartServiceImpl.addProductToCart(accountid,productid);
     }
 
     @GetMapping(value = "/findCartById/{id}")
@@ -50,7 +49,7 @@ public class CartController {
     }
 
 
-    public void removedProduct(Product product, int quantity) {
+    public void removedProduct(Product product, Cart cart) {
 
     }
 }

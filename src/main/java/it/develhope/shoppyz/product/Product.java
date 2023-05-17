@@ -1,8 +1,6 @@
 package it.develhope.shoppyz.product;
 
-
-import it.develhope.shoppyz.cart.Cart;
-import it.develhope.shoppyz.facts.Cart_product;
+import it.develhope.shoppyz.relationProdCart.Cart_Product;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,7 +13,7 @@ public class Product {
     private Long id;
 
     @OneToMany(mappedBy = "product")
-    Set<Cart_product> registrations;
+    Set<Cart_Product> registrations;
 
     @Column(nullable = false)
     private String name;
@@ -43,11 +41,11 @@ public class Product {
         this.id = id;
     }
 
-    public Set<Cart_product> getRegistrations() {
+    public Set<Cart_Product> getRegistrations() {
         return registrations;
     }
 
-    public void setRegistrations(Set<Cart_product> registrations) {
+    public void setRegistrations(Set<Cart_Product> registrations) {
         this.registrations = registrations;
     }
 
