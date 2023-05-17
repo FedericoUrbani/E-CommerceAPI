@@ -22,7 +22,6 @@ public class CartServiceImpl implements CartService {
     @Autowired
     Cart_ProductRepository cartProductRepository;
 
-
     @Override
     public List<Cart> findAllCart() {
         return cartRepository.findAll();
@@ -56,7 +55,6 @@ public class CartServiceImpl implements CartService {
         Cart_Product cartProduct= new Cart_Product();
         cartProduct.setProduct(product);
         cartProduct.setCart(cart);
-        cart.registrations.add(cartProduct);
         cartProductRepository.save(cartProduct);
         return cartRepository.save(cart);
     }

@@ -12,9 +12,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "product")
-    Set<Cart_Product> registrations;
-
     @Column(nullable = false)
     private String name;
 
@@ -39,14 +36,6 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set<Cart_Product> getRegistrations() {
-        return registrations;
-    }
-
-    public void setRegistrations(Set<Cart_Product> registrations) {
-        this.registrations = registrations;
     }
 
     public String getName() {
