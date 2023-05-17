@@ -12,8 +12,8 @@ public  class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
-
-    public Optional<Product> getProduct(Integer id){
+@Override
+    public Optional<Product> getProduct(Long id){
         return productRepository.findById(id);
     }
 

@@ -1,7 +1,5 @@
 package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.account.Account;
-import it.develhope.shoppyz.order.Order;
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.order.OrderRepository;
 import it.develhope.shoppyz.product.ProductRepository;
@@ -29,7 +27,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Optional<Cart> getCart(int id) {
+    public Optional<Cart> getCart(Long id) {
         return cartRepository.findById(id);
     }
 
@@ -39,31 +37,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addProductToCart(Product product, Account account, int qty) {
-
-    }
-
-    @Override
-    public void addProductToCart(Cart cart, Product product, int quantity) {
-
-    }
-
-    @Override
-    public void addProductToCart(Cart cart, Product product) {
-
-        Cart cartProv= cart;
-
-
-
-    }
-
-    @Override
-    public Cart findById(int id) {
+    public Cart findById(Long id) {
         return  cartRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void removeCart(Integer id) {
+    public void removeCart(Long id) {
         cartRepository.deleteById(id);
     }
 
@@ -73,31 +52,10 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void removedProduct(Product product, int quantity) {
+    public void removedProduct(Product product, Long quantity) {
 
     }
 
-    @Override
-    public List<Product> removedProduct(List<Product> list, int id_prod) {
-
-        //logica per individuare il prodotto da eliminare (key)
-        //rimuovi l'elemento della lista ritornandola
-
-
-        return null; //ritorni la lista
-    }
-
-/*
-    public void makeOrder(Cart cart){
-        Order provOrd= new Order();
-        provOrd.setCreateDate(new java.util.Date());
-        provOrd.setIsgift(cart.getIsgift());
-        provOrd.setTrackingNumber(randomTrackingNumberGenerator());
-        provOrd.setBuyerAccount(cart.getAccount());
-        provOrd.setProductsList(cart.getProductsInCart());
-        orderRepository.saveAndFlush(provOrd);
-    }
-*/
     /** logica per autogenerazione trackingnumb */
 
     public int getRandomNumber(int min, int max) {
@@ -118,9 +76,5 @@ public class CartServiceImpl implements CartService {
         String returnedString= buffer.toString();
         return returnedString;
     }
-
-
-
-
 
 }

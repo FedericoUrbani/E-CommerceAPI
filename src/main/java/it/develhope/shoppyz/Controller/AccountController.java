@@ -20,21 +20,22 @@ public class AccountController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deletebyId(@PathVariable Integer id){
+    public void deletebyId(@PathVariable Long id){
              accountServiceImpl.deleteById(id);
     }
 
     @GetMapping(value = "/findbyid/{id}")
-    public Optional<Account> getAccountById(@PathVariable Integer id){
+    public Optional<Account> getAccountById(@PathVariable Long id){
        return accountServiceImpl.getAccount(id);
     }
     @PutMapping("/update/{id}")
-    public void updateAccount(@PathVariable Integer id, @RequestBody Account account){
+    public void updateAccount(@PathVariable Long id, @RequestBody Account account){
         account.setId(id);
         accountServiceImpl.updateAccount(account);
     }
     @PostMapping("/saveaccount")
     public void saveAccount(@RequestBody Account account){
+        System.out.println(account.toString());
         accountServiceImpl.saveAccount(account);
     }
 

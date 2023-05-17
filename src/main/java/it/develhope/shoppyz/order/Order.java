@@ -12,7 +12,7 @@ import java.util.Optional;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
 
 
@@ -33,25 +33,24 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    public Order(){
-
-    }
-
-    public Order(int id, Account buyerAccount, String trackingNumber, byte isgift, Date createDate, OrderStatus orderStatus) {
+    public Order(Long id, Account buyerAccount, String trackingNumber, byte isgift, Date createDate, OrderStatus orderStatus) {
         this.id = id;
         this.buyerAccount = buyerAccount;
         this.trackingNumber = trackingNumber;
-
         this.isgift = isgift;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
     }
 
-    public int getId() {
+    public Order(){
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,8 +69,6 @@ public class Order {
     public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
-
-
 
     public byte getIsgift() {
         return isgift;

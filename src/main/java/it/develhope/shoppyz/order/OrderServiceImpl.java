@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Optional<Order> getOrder(Integer id) {
+    public Optional<Order> getOrder(Long id) {
         return orderRepository.findById(id);
     }
 
