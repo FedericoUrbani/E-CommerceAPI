@@ -14,8 +14,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-
     @OneToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account buyerAccount;

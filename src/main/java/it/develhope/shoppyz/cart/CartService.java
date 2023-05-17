@@ -24,7 +24,7 @@ public interface CartService {
     public void removeCart(Long id);
 
 
-
+    public Cart addProductToCart(Long accountid, Long productid) throws Exception;
 
 
     public void saveCart(Cart cart);
