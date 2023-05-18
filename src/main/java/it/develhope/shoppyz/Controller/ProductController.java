@@ -23,9 +23,9 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public void addProduct(@RequestBody Product product){
-        System.out.println(product.toString());
-        productServiceImpl.createProduct(product);
+    public Product addProduct(@RequestBody Product product){
+        return productServiceImpl.createProduct(product);
+
     }
 
     @GetMapping(value = "/findbyid/{id}")
