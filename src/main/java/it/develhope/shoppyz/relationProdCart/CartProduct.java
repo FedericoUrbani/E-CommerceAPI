@@ -13,24 +13,26 @@ public class CartProduct {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private Cart cartid;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Product productid;
 
-    public CartProduct(Long id, Cart cart, Product product) {
+
+    public CartProduct(Long id, Cart cartid, Product productid) {
         this.id = id;
-        this.cart = cart;
-        this.product = product;
-    }
-    public CartProduct(Cart cart, Product product) {
-        this.cart = cart;
-        this.product = product;
+        this.cartid = cartid;
+        this.productid = productid;
     }
 
-    public CartProduct(){}
+    CartProduct(){}
 
+    public CartProduct(Cart cartid, Product productid) {
+
+        this.cartid = cartid;
+        this.productid = productid;
+    }
     public Long getId() {
         return id;
     }
@@ -39,19 +41,19 @@ public class CartProduct {
         this.id = id;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Cart getCartid() {
+        return cartid;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCartid(Cart cartid) {
+        this.cartid = cartid;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product getProductid() {
+        return productid;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductid(Product productid) {
+        this.productid = productid;
     }
 }

@@ -51,13 +51,12 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart addProductToCart(Long accountid, Long productid) throws Exception {
 
-        Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));;
+        Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));
         Product product= productRepository.getReferenceById(productid);
-        CartProduct cartProduct= new CartProduct();
-        cartProduct.setProduct(product);
-        cartProduct.setCart(cart);
+        CartProduct cartProduct= new CartProduct(cart,product);
         cartProductRepository.save(cartProduct);
-        return cartRepository.save(cart);
+
+        return cart;
     }
 
     @Override
