@@ -10,7 +10,7 @@ public interface AccountService {
     public Optional<Account> getAccount(Long id);
     public void deleteAccount(Account account);
     public void deleteById(Long id);
-    public void saveAccount(Account account);
+    public Account saveAccount(Account account);
     public void updateAccount(Account account);
     public List<Account> getAccountList();
 

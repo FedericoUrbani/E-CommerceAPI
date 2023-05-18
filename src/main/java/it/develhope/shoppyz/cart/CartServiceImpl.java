@@ -1,13 +1,17 @@
 package it.develhope.shoppyz.cart;
 
+import it.develhope.shoppyz.DTO.ProductDTO;
 import it.develhope.shoppyz.relationProdCart.CartProduct;
 
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.product.ProductRepository;
 import it.develhope.shoppyz.relationProdCart.CartProductRepository;
+import it.develhope.shoppyz.relationProdCart.CartProductServiceImpl;
+import it.develhope.shoppyz.utils.ProductDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,12 @@ public class CartServiceImpl implements CartService {
     CartRepository cartRepository ;
     @Autowired
     CartProductRepository cartProductRepository;
+
+    @Autowired
+    CartProductServiceImpl cartProductServiceImpl;
+
+    @Autowired
+    ProductDTOConverter productDTOConverter;
 
     @Override
     public List<Cart> findAllCart() {
@@ -48,9 +58,16 @@ public class CartServiceImpl implements CartService {
         cartRepository.deleteById(id);
     }
 
-    @Override
-    public Cart addProductToCart(Long accountid, Long productid) throws Exception {
+    /** estrapola la lista dei prodotti in dto **/
+    public List<ProductDTO> getProductsFromPersistency(Long id){
+        Cart cart=cartRepository.getReferenceById(id);
+        List<Product> prodList= cartProductRepository.getListOfProductInCart(cart);
+        return cartProductServiceImpl.getProductAsDTO(prodList);
+    }
 
+    /** salva la relazione nella fact table **/
+    @Override
+    public Cart saveProductToCart(Long accountid, Long productid) throws Exception {
         Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));
         Product product= productRepository.getReferenceById(productid);
         CartProduct cartProduct= new CartProduct(cart,product);
@@ -58,7 +75,17 @@ public class CartServiceImpl implements CartService {
 
         return cart;
     }
-
+    /** aggiunge il prodotto alla lista embedded nel carrello **/
+    public Cart addProductToCart(List<ProductDTO> listOfProd, Long cartId){
+        Cart cart= cartRepository.getReferenceById(cartId);
+        List<ProductsInCart> prodList=new ArrayList<>();
+        for(ProductDTO p: listOfProd){
+            prodList.add(productDTOConverter.convertProductToCartProduct(p));
+        }
+        cart.setProductList(prodList);
+        cart.setTotalPrice();
+        return cart;
+    }
     @Override
     public void saveCart(Cart cart) {
         cartRepository.saveAndFlush(cart);

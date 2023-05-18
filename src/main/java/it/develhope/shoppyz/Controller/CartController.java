@@ -2,11 +2,9 @@ package it.develhope.shoppyz.Controller;
 
 
 
-import it.develhope.shoppyz.DTO.ProductDTO;
 import it.develhope.shoppyz.cart.Cart;
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.cart.CartServiceImpl;
-import it.develhope.shoppyz.relationProdCart.CartProduct;
 import it.develhope.shoppyz.relationProdCart.CartProductRepository;
 import it.develhope.shoppyz.relationProdCart.CartProductServiceImpl;
 
@@ -28,10 +26,8 @@ public class CartController {
     @Autowired
     CartProductRepository cartProductRepository;
     @GetMapping("/{id}")
-    public List<ProductDTO>getProductsFromCart(@PathVariable Long id) throws Exception {
-        Cart cart=cartServiceImpl.getCart(id).orElseThrow(()->new Exception("Cart with id: "+id+" not found"));
-        List<Product> prodList= cartProductRepository.getListOfProductInCart(cart);
-        return cartProductServiceImpl.getProductasDTO(prodList);
+    public Cart getProductsFromCart(@PathVariable Long id) throws Exception {
+        return null;
     }
 
     @GetMapping("/findall")
@@ -45,9 +41,10 @@ public class CartController {
     }
 
 
-    @PutMapping("{accountid}/{productid}")
-    public void addProductInCart(@PathVariable Long accountid, @PathVariable Long productid) throws Exception {
-        cartServiceImpl.addProductToCart(accountid,productid);
+    @PutMapping("/addproduct/{accountid}/{productid}")
+    public Cart saveProductInCart(@PathVariable Long accountid, @PathVariable Long productid) throws Exception {
+        cartServiceImpl.saveProductToCart(accountid,productid);
+        return cartServiceImpl.addProductToCart(cartServiceImpl.getProductsFromPersistency(accountid),accountid);
     }
 
     @GetMapping(value = "/findCartById/{id}")

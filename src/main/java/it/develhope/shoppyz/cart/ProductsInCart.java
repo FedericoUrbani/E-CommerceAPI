@@ -1,20 +1,24 @@
-package it.develhope.shoppyz.DTO;
+package it.develhope.shoppyz.cart;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+@Embeddable
+public class ProductsInCart {
 
-public class ProductDTO {
-
+    @Column
     private String name;
 
+    @Column
     private double price;
 
-    public ProductDTO(String name, double price) {
+
+    public ProductsInCart(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public ProductDTO(){}
+    ProductsInCart(){}
 
     public String getName() {
         return name;

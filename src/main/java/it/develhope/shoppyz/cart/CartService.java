@@ -18,14 +18,12 @@ public interface CartService {
     public void updateCart(Cart cart);
 
 
-
     public Cart findById(Long id);
 
     public void removeCart(Long id);
 
 
-    public Cart addProductToCart(Long accountid, Long productid) throws Exception;
-
+    Cart saveProductToCart(Long accountid, Long productid) throws Exception;
 
     public void saveCart(Cart cart);
 

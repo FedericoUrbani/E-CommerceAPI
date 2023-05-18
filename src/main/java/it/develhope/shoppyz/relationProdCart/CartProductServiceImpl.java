@@ -26,7 +26,7 @@ public class CartProductServiceImpl {
 
 
 
-    public List <ProductDTO> getProductasDTO(List<Product> productList){
+    public List <ProductDTO> getProductAsDTO(List<Product> productList){
         List<ProductDTO> DTOList= new ArrayList<>();
         for (Product p: productList){
             DTOList.add(productDTOConverter.convertProducttoDTO(p));

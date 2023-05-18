@@ -34,9 +34,9 @@ public class AccountController {
         accountServiceImpl.updateAccount(account);
     }
     @PostMapping("/saveaccount")
-    public void saveAccount(@RequestBody Account account){
+    public Account saveAccount(@RequestBody Account account){
         System.out.println(account.toString());
-        accountServiceImpl.saveAccount(account);
+        return accountServiceImpl.saveAccount(account);
     }
 
 
