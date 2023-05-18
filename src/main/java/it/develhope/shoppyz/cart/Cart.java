@@ -15,8 +15,6 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "cart")
-    Set<Cart_Product> registrations;
 
     @Column
     private byte isgift;
@@ -24,7 +22,6 @@ public class Cart {
     public Cart(Account account, Set<Cart_Product> registrations, byte isgift) {
 
 
-        this.registrations = registrations;
         this.isgift = isgift;
     }
 
@@ -39,13 +36,6 @@ public class Cart {
         this.id = id;
     }
 
-    public Set<Cart_Product> getRegistrations() {
-        return registrations;
-    }
-
-    public void setRegistrations(Set<Cart_Product> registrations) {
-        this.registrations = registrations;
-    }
 
     public byte getIsgift() {
         return isgift;

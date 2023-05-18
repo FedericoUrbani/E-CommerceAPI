@@ -22,8 +22,6 @@ public class ProductController {
         return productServiceImpl.getProductList();
     }
 
-
-
     @PostMapping("/addProduct")
     public void addProduct(@RequestBody Product product){
         System.out.println(product.toString());
