@@ -1,6 +1,6 @@
 package it.develhope.shoppyz.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import it.develhope.shoppyz.cart.Cart;
 import jakarta.persistence.*;
 
@@ -43,7 +43,6 @@ public class Account {
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-
     private Cart cart;
     public Account() {
 

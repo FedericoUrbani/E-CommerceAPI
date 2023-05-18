@@ -35,7 +35,6 @@ public class AccountController {
     }
     @PostMapping("/saveaccount")
     public Account saveAccount(@RequestBody Account account){
-        System.out.println(account.toString());
         return accountServiceImpl.saveAccount(account);
     }
 

@@ -1,11 +1,8 @@
 package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.DTO.ProductDTO;
-import it.develhope.shoppyz.account.Address;
+
 import jakarta.persistence.*;
-
 import java.util.List;
-
 
 @Entity
 @Table(name = "cart")
