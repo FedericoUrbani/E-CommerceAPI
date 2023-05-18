@@ -83,7 +83,7 @@ public class CartServiceImpl implements CartService {
             prodList.add(productDTOConverter.convertProductToCartProduct(p));
         }
         cart.setProductList(prodList);
-        cart.setTotalPrice();
+       // cart.setTotalPrice();
         return cart;
     }
     @Override
