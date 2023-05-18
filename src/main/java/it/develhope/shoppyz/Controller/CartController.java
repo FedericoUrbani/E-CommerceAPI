@@ -1,11 +1,15 @@
 package it.develhope.shoppyz.Controller;
 
-import it.develhope.shoppyz.account.Account;
+
+
+import it.develhope.shoppyz.DTO.ProductDTO;
 import it.develhope.shoppyz.cart.Cart;
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.cart.CartServiceImpl;
-import it.develhope.shoppyz.relationProdCart.Cart_ProductRepository;
-import it.develhope.shoppyz.relationProdCart.Cart_ProductServiceImpl;
+import it.develhope.shoppyz.relationProdCart.CartProduct;
+import it.develhope.shoppyz.relationProdCart.CartProductRepository;
+import it.develhope.shoppyz.relationProdCart.CartProductServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,13 +21,17 @@ import java.util.Optional;
 public class CartController {
 
     @Autowired
-    private Cart_ProductServiceImpl cartProductServiceImpl;
+    private CartProductServiceImpl cartProductServiceImpl;
     @Autowired
     private CartServiceImpl cartServiceImpl;
 
+    @Autowired
+    CartProductRepository cartProductRepository;
     @GetMapping("/{id}")
-    public List<Product>getProductsFromCart(@PathVariable Long id){
-        return cartProductServiceImpl.getProductsInCart(id);
+    public List<ProductDTO>getProductsFromCart(@PathVariable Long id) throws Exception {
+        Cart cart=cartServiceImpl.getCart(id).orElseThrow(()->new Exception("Cart with id: "+id+" not found"));
+        List<Product> prodList= cartProductRepository.getListOfProductInCart(cart);
+        return cartProductServiceImpl.getProductasDTO(prodList);
     }
 
     @GetMapping("/findall")

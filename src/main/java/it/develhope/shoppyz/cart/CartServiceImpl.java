@@ -1,9 +1,10 @@
 package it.develhope.shoppyz.cart;
 
-import it.develhope.shoppyz.relationProdCart.Cart_Product;
-import it.develhope.shoppyz.relationProdCart.Cart_ProductRepository;
+import it.develhope.shoppyz.relationProdCart.CartProduct;
+
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.product.ProductRepository;
+import it.develhope.shoppyz.relationProdCart.CartProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class CartServiceImpl implements CartService {
     @Autowired
     CartRepository cartRepository ;
     @Autowired
-    Cart_ProductRepository cartProductRepository;
+    CartProductRepository cartProductRepository;
 
     @Override
     public List<Cart> findAllCart() {
@@ -50,13 +51,12 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart addProductToCart(Long accountid, Long productid) throws Exception {
 
-        Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));;
+        Cart cart=cartRepository.findById(accountid).orElseThrow(()->new Exception("Cart with id: "+accountid+" not found"));
         Product product= productRepository.getReferenceById(productid);
-        Cart_Product cartProduct= new Cart_Product();
-        cartProduct.setProduct(product);
-        cartProduct.setCart(cart);
+        CartProduct cartProduct= new CartProduct(cart,product);
         cartProductRepository.save(cartProduct);
-        return cartRepository.save(cart);
+
+        return cart;
     }
 
     @Override

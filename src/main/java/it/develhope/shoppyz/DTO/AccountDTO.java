@@ -1,7 +1,7 @@
 package it.develhope.shoppyz.DTO;
 
 
-public class Account_DTO {
+public class AccountDTO {
 
     private Integer id;
 
@@ -43,8 +43,8 @@ public class Account_DTO {
         this.email = email;
     }
 
-    public Account_DTO (){}
-    public Account_DTO(Integer id, String name, String surname, String email) {
+    public AccountDTO (){}
+    public AccountDTO(Integer id, String name, String surname, String email) {
         this.id = id;
         this.name = name;
         this.surname = surname;

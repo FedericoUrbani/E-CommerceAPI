@@ -1,9 +1,9 @@
 package it.develhope.shoppyz.product;
 
-import it.develhope.shoppyz.relationProdCart.Cart_Product;
+
 import jakarta.persistence.*;
 
-import java.util.Set;
+
 
 @Entity
 @Table

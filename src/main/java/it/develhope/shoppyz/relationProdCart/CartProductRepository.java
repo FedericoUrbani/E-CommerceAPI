@@ -1,5 +1,6 @@
 package it.develhope.shoppyz.relationProdCart;
 
+import it.develhope.shoppyz.cart.Cart;
 import it.develhope.shoppyz.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,11 +12,11 @@ import java.util.List;
 
 
 @RepositoryRestResource
-public interface Cart_ProductRepository extends JpaRepository<Cart_Product ,Long> {
+public interface CartProductRepository extends JpaRepository<CartProduct ,Long> {
 
     /** returns all the products id from the cart id **/
-    @Query("SELECT p FROM Cart_Product p WHERE p.id = :cartId")
-    List<Cart_Product> getListOfProductInCart(@Param("cartId") Long cartId);
+    @Query("SELECT p.productid FROM CartProduct p WHERE p.cartid= :cartId")
+    List<Product> getListOfProductInCart(@Param("cartId") Cart cartId);
 
 }
 
