@@ -15,10 +15,6 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     CartRepository cartRepository;
 
-
-
-
-
     /**
      * @return get the account:
      */

@@ -1,6 +1,7 @@
 package it.develhope.shoppyz.cart;
 
 
+import it.develhope.shoppyz.DTO.ProductDTO;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -23,12 +24,12 @@ public class Cart {
             @AttributeOverride(name = "name", column = @Column(name = "name")),
             @AttributeOverride(name = "price", column = @Column(name = "price")),
     })
-    private List<ProductsInCart> productList;
+    private List<ProductDTO> productList;
 
     public Cart(){}
 
 
-    public Cart(Long id, byte isgift, double totalPrice, List<ProductsInCart> productList) {
+    public Cart(Long id, byte isgift, double totalPrice, List<ProductDTO> productList) {
         this.id = id;
         this.isgift = isgift;
         this.totalPrice = totalPrice;
@@ -52,6 +53,12 @@ public class Cart {
     }
 
     public double getTotalPrice() {
+        if(this.totalPrice==0&&this.productList!=null){
+            this.totalPrice=0;
+            for(ProductDTO p: this.productList){
+                setTotalPrice(totalPrice+=p.getPrice());
+            }
+        }
         return totalPrice;
     }
 
@@ -59,11 +66,11 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public List<ProductsInCart> getProductList() {
+    public List<ProductDTO> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<ProductsInCart> productList) {
+    public void setProductList(List<ProductDTO> productList) {
         this.productList = productList;
     }
 }

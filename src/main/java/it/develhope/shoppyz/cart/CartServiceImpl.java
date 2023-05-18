@@ -78,12 +78,8 @@ public class CartServiceImpl implements CartService {
     /** aggiunge il prodotto alla lista embedded nel carrello **/
     public Cart addProductToCart(List<ProductDTO> listOfProd, Long cartId){
         Cart cart= cartRepository.getReferenceById(cartId);
-        List<ProductsInCart> prodList=new ArrayList<>();
-        for(ProductDTO p: listOfProd){
-            prodList.add(productDTOConverter.convertProductToCartProduct(p));
-        }
-        cart.setProductList(prodList);
-       // cart.setTotalPrice();
+        cart.setProductList(listOfProd);
+
         return cart;
     }
     @Override
