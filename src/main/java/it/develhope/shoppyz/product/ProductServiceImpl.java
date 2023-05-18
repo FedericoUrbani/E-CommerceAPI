@@ -12,14 +12,14 @@ public  class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
-@Override
+    @Override
     public Optional<Product> getProduct(Long id){
         return productRepository.findById(id);
     }
 
-    public void createProduct(Product product){
-        productRepository.saveAndFlush(product);
-
+    public Product createProduct(Product product){
+        productRepository.save(product);
+        return product;
     }
 
     @Override
