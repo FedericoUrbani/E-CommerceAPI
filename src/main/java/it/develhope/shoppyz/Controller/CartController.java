@@ -4,6 +4,8 @@ import it.develhope.shoppyz.account.Account;
 import it.develhope.shoppyz.cart.Cart;
 import it.develhope.shoppyz.product.Product;
 import it.develhope.shoppyz.cart.CartServiceImpl;
+import it.develhope.shoppyz.relationProdCart.Cart_ProductRepository;
+import it.develhope.shoppyz.relationProdCart.Cart_ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +13,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("Shoppyz/cart")
 public class CartController {
 
     @Autowired
+    private Cart_ProductServiceImpl cartProductServiceImpl;
+    @Autowired
     private CartServiceImpl cartServiceImpl;
+
+    @GetMapping("/{id}")
+    public List<Product>getProductsFromCart(@PathVariable Long id){
+        return cartProductServiceImpl.getProductsInCart(id);
+    }
 
     @GetMapping("/findall")
     public List<Cart> findAll() {
