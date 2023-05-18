@@ -1,7 +1,11 @@
 package it.develhope.shoppyz.DTO;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
 
 public class CartDTO {
+
 
     private int id;
 

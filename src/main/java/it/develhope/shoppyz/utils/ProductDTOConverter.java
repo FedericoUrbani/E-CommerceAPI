@@ -2,6 +2,7 @@ package it.develhope.shoppyz.utils;
 
 import it.develhope.shoppyz.DTO.ProductDTO;
 
+import it.develhope.shoppyz.cart.ProductsInCart;
 import it.develhope.shoppyz.product.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,4 +19,8 @@ public class ProductDTOConverter {
         return productDto;
     }
 
+    public ProductsInCart convertProductToCartProduct(ProductDTO productDTO){
+        ProductsInCart prodInCart= modelMapper.map(productDTO,ProductsInCart.class);
+        return prodInCart;
+    }
 }
