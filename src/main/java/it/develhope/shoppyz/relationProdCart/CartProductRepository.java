@@ -11,11 +11,11 @@ import java.util.List;
 
 
 @RepositoryRestResource
-public interface Cart_ProductRepository extends JpaRepository<Cart_Product ,Long> {
+public interface CartProductRepository extends JpaRepository<CartProduct ,Long> {
 
     /** returns all the products id from the cart id **/
-    @Query("SELECT p FROM Cart_Product p WHERE p.id = :cartId")
-    List<Cart_Product> getListOfProductInCart(@Param("cartId") Long cartId);
+    @Query("SELECT  p.product FROM CartProduct p WHERE p.cart= :cartId")
+    List<CartProduct> getListOfProductInCart(@Param("cartId") Long cartId);
 
 }
 

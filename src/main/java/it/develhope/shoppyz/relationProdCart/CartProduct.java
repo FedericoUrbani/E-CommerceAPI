@@ -5,7 +5,7 @@ import it.develhope.shoppyz.product.Product;
 import jakarta.persistence.*;
 
 @Entity
-public class Cart_Product {
+public class CartProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,17 +19,17 @@ public class Cart_Product {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public Cart_Product(Long id, Cart cart, Product product) {
+    public CartProduct(Long id, Cart cart, Product product) {
         this.id = id;
         this.cart = cart;
         this.product = product;
     }
-    public Cart_Product(Cart cart, Product product) {
+    public CartProduct(Cart cart, Product product) {
         this.cart = cart;
         this.product = product;
     }
 
-    public Cart_Product(){}
+    public CartProduct(){}
 
     public Long getId() {
         return id;
