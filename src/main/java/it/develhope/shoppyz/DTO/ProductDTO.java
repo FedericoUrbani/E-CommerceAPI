@@ -1,12 +1,15 @@
 package it.develhope.shoppyz.DTO;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
-
+@Embeddable
 public class ProductDTO {
 
+    @Column
     private String name;
 
+    @Column
     private double price;
 
     public ProductDTO(String name, double price) {
