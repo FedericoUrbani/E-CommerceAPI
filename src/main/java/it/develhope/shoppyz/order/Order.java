@@ -1,22 +1,21 @@
 package it.develhope.shoppyz.order;
 
-import it.develhope.shoppyz.account.Account;
+import it.develhope.shoppyz.account.PaymentMethod;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Optional;
-
+import java.util.List;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    Long id;
 
-    @OneToOne()
-    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    private Account buyerAccount;
+    @Column
+    private Long accountId;
 
     @Column
     private String trackingNumber;
@@ -24,25 +23,36 @@ public class Order {
     @Column
     private byte isgift;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private Date createDate;
 
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    public Order(Long id, Account buyerAccount, String trackingNumber, byte isgift, Date createDate, OrderStatus orderStatus) {
+
+    @Column
+    private double totaleprice;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "product_id"), foreignKey = @ForeignKey(name = "product_order_fk"))
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "name")),
+            @AttributeOverride(name = "price", column = @Column(name = "price")),
+    })
+    private List<OrderProduct> productsOrder;
+
+    public Order(Long id, String trackingNumber, byte isgift, Date createDate, OrderStatus orderStatus, Long accountId, double totaleprice, List<OrderProduct> productsOrder) {
         this.id = id;
-        this.buyerAccount = buyerAccount;
         this.trackingNumber = trackingNumber;
         this.isgift = isgift;
         this.createDate = createDate;
         this.orderStatus = orderStatus;
+        this.accountId = accountId;
+        this.totaleprice = totaleprice;
+        this.productsOrder = productsOrder;
     }
 
-    public Order(){
-
-    }
+    public Order(){}
 
     public Long getId() {
         return id;
@@ -50,14 +60,6 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Account getBuyerAccount() {
-        return buyerAccount;
-    }
-
-    public void setBuyerAccount(Account buyerAccount) {
-        this.buyerAccount = buyerAccount;
     }
 
     public String getTrackingNumber() {
@@ -90,5 +92,29 @@ public class Order {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public double getTotaleprice() {
+        return totaleprice;
+    }
+
+    public void setTotaleprice(double totaleprice) {
+        this.totaleprice = totaleprice;
+    }
+
+    public List<OrderProduct> getProductsOrder() {
+        return productsOrder;
+    }
+
+    public void setProductsOrder(List<OrderProduct> productsOrder) {
+        this.productsOrder = productsOrder;
     }
 }

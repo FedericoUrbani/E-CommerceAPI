@@ -1,21 +1,18 @@
 package it.develhope.shoppyz.Controller;
 
 import it.develhope.shoppyz.product.Product;
-import it.develhope.shoppyz.product.ProductRepository;
-import it.develhope.shoppyz.product.ProductServiceImpl;
-import jakarta.servlet.http.HttpServletResponse;
+import it.develhope.shoppyz.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("Shoppyz/product")
 public class ProductController {
 
     @Autowired
-    ProductServiceImpl productServiceImpl;
+    ProductService productServiceImpl;
 
     @GetMapping("/findall")
     public List<Product> findAll(){
@@ -29,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/findbyid/{id}")
-    public Optional<Product> findProductById(@PathVariable Long id){
+    public Product findProductById(@PathVariable Long id){
         return productServiceImpl.getProduct(id);
     }
 
@@ -43,8 +40,6 @@ public class ProductController {
     public void deleteProductbyID(@PathVariable Long id){
        productServiceImpl.deleteProductById(id);
    }
-
-
 
 
 }

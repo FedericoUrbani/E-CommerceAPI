@@ -1,18 +1,17 @@
 package it.develhope.shoppyz.Controller;
 
 import it.develhope.shoppyz.account.Account;
-import it.develhope.shoppyz.account.AccountServiceImpl;
+import it.develhope.shoppyz.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/Shoppyz/account")
 public class AccountController {
 
     @Autowired
-    AccountServiceImpl accountServiceImpl;
+    AccountService accountServiceImpl;
 
     @GetMapping("/findall")
     public List<Account> findall(){
@@ -25,7 +24,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "/findbyid/{id}")
-    public Optional<Account> getAccountById(@PathVariable Long id){
+    public Account getAccountById(@PathVariable Long id){
        return accountServiceImpl.getAccount(id);
     }
     @PutMapping("/update/{id}")
