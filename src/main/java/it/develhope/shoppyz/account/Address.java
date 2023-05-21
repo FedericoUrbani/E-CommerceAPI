@@ -24,10 +24,6 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-
-
-
-
     public String getStreet() {
         return street;
     }

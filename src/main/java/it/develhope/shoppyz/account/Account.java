@@ -1,7 +1,6 @@
 package it.develhope.shoppyz.account;
 
 
-import it.develhope.shoppyz.cart.Cart;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -41,14 +40,7 @@ public class Account {
     })
     private List<PaymentMethod> paymentMethods;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
-    public Account() {
-
-    }
-
-    public Account(Long id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods, Cart cart) {
+    public Account(Long id, String name, String surname, List<Address> addresses, String phoneNumber, byte enabled, String email, String password, List<PaymentMethod> paymentMethods) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -58,7 +50,10 @@ public class Account {
         this.email = email;
         this.password = password;
         this.paymentMethods = paymentMethods;
-        this.cart = cart;
+    }
+
+    public Account() {
+
     }
 
     public Long getId() {
@@ -133,15 +128,6 @@ public class Account {
         this.paymentMethods = paymentMethods;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-
-    }
-
     @Override
     public String toString() {
         return "Account{" +
@@ -154,7 +140,6 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", paymentMethods=" + paymentMethods +
-                ", cart=" + cart +
                 '}';
     }
 }
