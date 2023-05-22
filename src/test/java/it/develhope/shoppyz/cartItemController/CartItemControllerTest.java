@@ -51,7 +51,7 @@ public class CartItemControllerTest {
 
     /**
      * Il secondo test verifica il comportamento del metodo getAllProductsByAccount nel CartItemController quando viene invocata una richiesta GET per ottenere tutti i prodotti nel carrello di un account
-     * qui sono presenti dei dati fittizzi per emulare dei possibili account, prodotti e oggetti nel carrello.
+     * qui sono presenti dei dati fittizi per emulare dei possibili account, prodotti e oggetti nel carrello.
      */
 
     @Test
