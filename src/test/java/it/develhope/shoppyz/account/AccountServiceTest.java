@@ -1,4 +1,5 @@
 package it.develhope.shoppyz.account;
+
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,6 @@ public class AccountServiceTest {
 
         retrievedAccount.setEnabled((byte) 1);
         accountService.updateAccount(retrievedAccount);
-
-
 
 
         Account updatedAccount = accountService.getAccount(retrievedAccount.getId());

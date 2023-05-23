@@ -14,9 +14,9 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping("/createorder/{accountid}/{isgift}")
-    public Order saveOrder (@PathVariable Long accountid,
-                            @PathVariable byte isgift){
-        orderService.createOrder(accountid,isgift);
+    public Order saveOrder(@PathVariable Long accountid,
+                           @PathVariable byte isgift) {
+        orderService.createOrder(accountid, isgift);
         return orderService.getOrderByAccountId(accountid);
     }
 }

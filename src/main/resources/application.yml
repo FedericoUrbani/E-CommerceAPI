@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/shoppyz
     username: root
-    password: Gabri123!
+    password: root
   jpa:
     database: mysql
     show_sql: true

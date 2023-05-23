@@ -15,31 +15,31 @@ public class ProductController {
     ProductService productServiceImpl;
 
     @GetMapping("/findall")
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         return productServiceImpl.getProductList();
     }
 
     @PostMapping("/addProduct")
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) {
         return productServiceImpl.createProduct(product);
 
     }
 
     @GetMapping(value = "/findbyid/{id}")
-    public Product findProductById(@PathVariable Long id){
+    public Product findProductById(@PathVariable Long id) {
         return productServiceImpl.getProduct(id);
     }
 
     @PutMapping("/update/{id}")
-    public void update(@PathVariable Long id, @RequestBody Product product){
+    public void update(@PathVariable Long id, @RequestBody Product product) {
         product.setId(id);
         productServiceImpl.updateProduct(product);
     }
 
-   @DeleteMapping(value = "/delete/{id}")
-    public void deleteProductbyID(@PathVariable Long id){
-       productServiceImpl.deleteProductById(id);
-   }
+    @DeleteMapping(value = "/delete/{id}")
+    public void deleteProductbyID(@PathVariable Long id) {
+        productServiceImpl.deleteProductById(id);
+    }
 
 
 }

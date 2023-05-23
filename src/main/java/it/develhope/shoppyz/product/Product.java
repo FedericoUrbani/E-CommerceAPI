@@ -4,7 +4,6 @@ package it.develhope.shoppyz.product;
 import jakarta.persistence.*;
 
 
-
 @Entity
 @Table
 public class Product {
@@ -38,7 +37,8 @@ public class Product {
         this.category = category;
     }
 
-    public Product (){}
+    public Product() {
+    }
 
     public Long getId() {
         return id;
