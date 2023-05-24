@@ -52,7 +52,8 @@ public class Order {
         this.productsOrder = productsOrder;
     }
 
-    public Order(){}
+    public Order() {
+    }
 
     public Long getId() {
         return id;

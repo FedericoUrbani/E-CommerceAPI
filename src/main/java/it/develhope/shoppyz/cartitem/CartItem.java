@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "cart_items")
-public class CartItem{
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +35,8 @@ public class CartItem{
         this.quantity = quantity;
     }
 
-    public CartItem(){}
+    public CartItem() {
+    }
 
     public Long getId() {
         return id;

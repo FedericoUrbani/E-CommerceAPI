@@ -10,10 +10,13 @@ public class OrderProduct {
     private String name;
     @Column
     private double price;
+    @Column
+    private int quantity;
 
-    public OrderProduct(String name, double price) {
+    public OrderProduct(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public OrderProduct(){}
@@ -32,5 +35,13 @@ public class OrderProduct {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
