@@ -5,6 +5,8 @@ import it.develhope.shoppyz.cartitem.CartItem;
 import it.develhope.shoppyz.cartitem.CartItemDTO;
 import it.develhope.shoppyz.cartitem.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +34,20 @@ public class CartItemController {
         return cartItemService.getAllCartItemsByAccount(accountid);
     }
 
+    @DeleteMapping("/{accountId}/product/{productId}")
+    public ResponseEntity<?> removeCartItem(
+            @PathVariable Long accountId,
+            @PathVariable Long productId,
+            @RequestParam(value = "quantity", defaultValue = "1") int quantityToRemove
+    ) {
+        try {
+            cartItemService.removeCartItem(accountId, productId, quantityToRemove);
+            CartItemDTO cartItemDTO = cartItemService.getActualCart(accountId);
+            return ResponseEntity.ok().body(cartItemDTO);
 
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Il cart adesso è vuoto o il prodotto da voler togliere non esiste");
+        }
+    }
 }
+

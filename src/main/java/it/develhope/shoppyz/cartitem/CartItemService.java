@@ -72,4 +72,24 @@ public class CartItemService {
         return ciDTO;
     }
 
+
+    public void removeCartItem(Long accountId, Long productId, int quantityToRemove) {
+        List<CartItem> cartItems = cartItemRepository.findAllByAccountId(accountId);
+
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getProduct().getId().equals(productId)) {
+                int currentQuantity = cartItem.getQuantity();
+
+                if (currentQuantity > quantityToRemove) {
+
+                    cartItem.setQuantity(currentQuantity - quantityToRemove);
+                    cartItemRepository.save(cartItem);
+                } else {
+
+                    cartItemRepository.delete(cartItem);
+                }
+                break;
+            }
+        }
+    }
 }
