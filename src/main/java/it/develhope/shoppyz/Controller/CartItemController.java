@@ -5,6 +5,8 @@ import it.develhope.shoppyz.cartitem.CartItem;
 import it.develhope.shoppyz.cartitem.CartItemDTO;
 import it.develhope.shoppyz.cartitem.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,4 +35,10 @@ public class CartItemController {
     }
 
 
+    @DeleteMapping("/removeproduct/{accountid}/{productid}")
+    public CartItemDTO removeCartItem(@PathVariable Long accountid, @PathVariable Long productid) {
+        cartItemService.removeCartItem(accountid, productid);
+        return cartItemService.getActualCart(accountid);
+    }
 }
+
