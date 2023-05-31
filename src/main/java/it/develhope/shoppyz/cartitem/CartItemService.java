@@ -47,6 +47,26 @@ public class CartItemService {
         return prodlist;
     }
 
+    public void removeCartItem(Long accountid, Long productid) {
+        List<CartItem> cartItems = cartItemRepository.findAllByAccountId(accountid);
+
+
+        CartItem cartItemToRemove = cartItems.stream()
+                .filter(item -> item.getAccount().getId().equals(accountid) && item.getProduct().getId().equals(productid))
+                .findFirst()
+                .orElse(null);
+
+        if (cartItemToRemove != null) {
+            if (cartItemToRemove.getQuantity() > 1) {
+                cartItemToRemove.setQuantity(cartItemToRemove.getQuantity() - 1);
+            } else {
+                cartItemToRemove.setQuantity(0);
+            }
+            cartItemRepository.saveAll(cartItems);
+        }
+
+    }
+
     public CartItemDTO getActualCart(Long accountid) {
         List<CartItem> prodlist = cartItemRepository.findAllByAccountId(accountid);
         CartItemDTO ciDTO = new CartItemDTO();
@@ -54,42 +74,29 @@ public class CartItemService {
         ciDTO.setSurname(prodlist.get(0).getAccount().getSurname());
         List<OrderProduct> orderList = new ArrayList<>();
         for (CartItem ci : prodlist) {
-            OrderProduct ordProd = orderProductConverter.convertProduct(ci.getProduct());
-            ordProd.setQuantity(ci.getQuantity());
-            double actualPrice = 0;
-            for (int i = 0; i < ci.getQuantity(); i++) {
-                actualPrice = actualPrice + ordProd.getPrice();
+            if (ci.getQuantity() > 0) {
+                OrderProduct ordProd = orderProductConverter.convertProduct(ci.getProduct());
+                ordProd.setQuantity(ci.getQuantity());
+                double actualPrice = 0;
+                for (int i = 0; i < ci.getQuantity(); i++) {
+                    actualPrice = actualPrice + ordProd.getPrice();
+                }
+                ordProd.setPrice(actualPrice);
+                orderList.add(ordProd);
             }
-            ordProd.setPrice(actualPrice);
-            orderList.add(ordProd);
-        }
-        ciDTO.setProductInCart(orderList);
-        double totalPrice = 0.0;
-        for (OrderProduct p : ciDTO.productInCart) {
-            totalPrice += p.getPrice();
-        }
-        ciDTO.setTotalprice(totalPrice);
+                ciDTO.setProductInCart(orderList);
+                double totalPrice = 0.0;
+                for (OrderProduct p : ciDTO.productInCart) {
+                    totalPrice += p.getPrice();
+                }
+                ciDTO.setTotalprice(totalPrice);
+
+            }
         return ciDTO;
     }
-
-
-    public void removeCartItem(Long accountId, Long productId, int quantityToRemove) {
-        List<CartItem> cartItems = cartItemRepository.findAllByAccountId(accountId);
-
-        for (CartItem cartItem : cartItems) {
-            if (cartItem.getProduct().getId().equals(productId)) {
-                int currentQuantity = cartItem.getQuantity();
-
-                if (currentQuantity > quantityToRemove) {
-
-                    cartItem.setQuantity(currentQuantity - quantityToRemove);
-                    cartItemRepository.save(cartItem);
-                } else {
-
-                    cartItemRepository.delete(cartItem);
-                }
-                break;
-            }
-        }
-    }
 }
+
+
+
+
+

@@ -34,20 +34,11 @@ public class CartItemController {
         return cartItemService.getAllCartItemsByAccount(accountid);
     }
 
-    @DeleteMapping("/{accountId}/product/{productId}")
-    public ResponseEntity<?> removeCartItem(
-            @PathVariable Long accountId,
-            @PathVariable Long productId,
-            @RequestParam(value = "quantity", defaultValue = "1") int quantityToRemove
-    ) {
-        try {
-            cartItemService.removeCartItem(accountId, productId, quantityToRemove);
-            CartItemDTO cartItemDTO = cartItemService.getActualCart(accountId);
-            return ResponseEntity.ok().body(cartItemDTO);
 
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Il cart adesso è vuoto o il prodotto da voler togliere non esiste");
-        }
+    @DeleteMapping("/removeproduct/{accountid}/{productid}")
+    public CartItemDTO removeCartItem(@PathVariable Long accountid, @PathVariable Long productid) {
+        cartItemService.removeCartItem(accountid, productid);
+        return cartItemService.getActualCart(accountid);
     }
 }
 
