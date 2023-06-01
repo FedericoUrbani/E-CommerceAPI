@@ -29,14 +29,28 @@ public class CartItemService {
      * salva il prodotto nel carrello con una quantità specifico per il prodotto
      **/
     public void saveCartItem(Long accountid, Long productid, int quantity) {
-        CartItem cartItem = new CartItem();
-        Account account = accountService.getAccount(accountid);
-        Product product = productService.getProduct(productid);
-        cartItem.setAccount(account);
-        cartItem.setProduct(product);
-        cartItem.setQuantity(quantity);
-        cartItemRepository.saveAndFlush(cartItem);
 
+        List<CartItem> cartItems=cartItemRepository.findAllByAccountId(accountid);
+        boolean present=false;
+        for (CartItem ci: cartItems){
+            if(ci.getProduct().getId().equals(productid)&&ci.getAccount().getId().equals(accountid)) present=true;
+        }
+        if (present){
+            for (CartItem ci: cartItems){
+                if(ci.getProduct().getId().equals(productid)&&ci.getAccount().getId().equals(accountid)){
+                    ci.setQuantity(ci.getQuantity()+quantity);
+                    cartItemRepository.saveAndFlush(ci);
+                };
+            }
+        }if (!present) {
+            CartItem cartItem = new CartItem();
+            Account account = accountService.getAccount(accountid);
+            Product product = productService.getProduct(productid);
+            cartItem.setAccount(account);
+            cartItem.setProduct(product);
+            cartItem.setQuantity(quantity);
+            cartItemRepository.saveAndFlush(cartItem);
+        }
     }
 
     /**
@@ -64,7 +78,6 @@ public class CartItemService {
             }
             cartItemRepository.saveAll(cartItems);
         }
-
     }
 
     public CartItemDTO getActualCart(Long accountid) {

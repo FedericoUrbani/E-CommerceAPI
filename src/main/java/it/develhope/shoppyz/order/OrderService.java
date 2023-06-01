@@ -61,8 +61,10 @@ public class OrderService {
         List<Integer> quantities = new ArrayList<>();
 
         for (CartItem ci : prodlist) {
-            prodInCart.add(ci.getProduct());
-            quantities.add(ci.getQuantity());
+            if(ci.getQuantity()>0) {
+                prodInCart.add(ci.getProduct());
+                quantities.add(ci.getQuantity());
+            }
         }
         for (int index = 0; index < prodInCart.size(); index++) {
             OrderProduct ordProd = orderProductConverter.convertProduct(prodInCart.get(index));
